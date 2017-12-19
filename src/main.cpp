@@ -49,8 +49,7 @@ int main(int argc, char *argv[])
 	}
 	
 	for(auto pin : config.aninputs) {
-		digitalWrite(231, 1);
-		digitalWrite(232, 1);
+		analogPinMode(pin);
 		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
 	}
 
