@@ -129,6 +129,7 @@ void pinMode(int pin, int mode)
 
 int digitalRead(int pin)
 {
+	int state;
 	gpio_export(pin);
 	state = gpio_read(pin);
 	gpio_unexport(pin);
