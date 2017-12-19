@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 
 	// setup inputs and outputs
 	for(auto pin : config.inputs) {
-		pinMode(pin, INPUT);
+		pinMode(pin, 0);
 		std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
 	}
 	
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 	}
 
 	for(auto pin : config.outputs) {
-		pinMode(pin, OUTPUT);
+		pinMode(pin, 1);
 		std::cout << "pin " << static_cast<int>(pin) << " set as OUTPUT" << std::endl;
 	}
 
