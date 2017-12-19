@@ -1,4 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/select.h>
+#include <sys/stat.h>
+#include <getopt.h>
+#include "sources/gpiolib.h"
 
+/***************************************************************************************************************
+**			Setup for functions below							      **
+***************************************************************************************************************/
 
 int gpio_direction(int gpio, int dir)
 {
@@ -104,5 +116,29 @@ int gpio_write(int gpio, int val)
 	}
 	return 1;
 }
+/***************************************************************************************************************
+**			Function calls from Main Program						      **
+***************************************************************************************************************/
 
-digitalRead(int pin)
+void pinMode(int pin, int mode)
+{
+	gpio_export(pin);
+	gpio_direction(pin, mode); // 1 = OUTPUT / 0 = INPUT
+	gpio_unexport(pin);
+}
+
+int digitalRead(int pin)
+{
+	gpio_export(pin);
+	state = gpio_read(pin);
+	gpio_unexport(pin);
+	return state;
+}
+
+void digitalWrite(int pin, int value)
+{
+	gpio_export(pin);
+	gpio_write(pin, value); // 1 = HIGH / 0 = LOW
+	gpio_unexport(pin);
+}
+	
