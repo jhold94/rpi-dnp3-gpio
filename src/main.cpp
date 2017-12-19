@@ -14,6 +14,7 @@
 
 #include "Config.h"
 #include "GPIOCommandHandler.h"
+#include "sources/gpiolib.h"
 
 // prototypes for handling ini file reading
 int cfg_handler(void* user, const char* section, const char* name, const char* value);
