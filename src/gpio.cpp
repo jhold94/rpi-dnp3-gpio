@@ -136,10 +136,10 @@ int digitalRead(int pin)
 	return state;
 }
 
-void digitalWrite(int pin, int value)
+void digitalWrite(int pin, int state)
 {
 	gpio_export(pin);
-	gpio_write(pin, value); // 1 = HIGH / 0 = LOW
+	gpio_write(pin, state); // 1 = HIGH / 0 = LOW
 	gpio_unexport(pin);
 }
 	
