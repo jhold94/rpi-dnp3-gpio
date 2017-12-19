@@ -6,7 +6,7 @@ bool Config::AddInput(uint8_t gpiopin)
     return Add(gpiopin, inputs);
 }
 
-bool config::AddAninput(uint8_t gpiopin)
+bool Config::AddAninput(uint8_t gpiopin)
 {
     return Add(gpiopin, aninputs);
 }
