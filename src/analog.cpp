@@ -21,7 +21,7 @@ int analogRead(int pin) {
 //	volatile unsigned int *mxclkctrlregs;
 	unsigned int i, x;
 	unsigned long long chan[8] = {0,0,0,0,0,0,0,0};
-	int devmem;
+	int devmem, meas_mV, meas_uA;
 
 	devmem = open("/dev/mem", O_RDWR|O_SYNC);
 	assert(devmem != -1);
