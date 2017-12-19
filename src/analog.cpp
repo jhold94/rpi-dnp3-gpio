@@ -24,7 +24,7 @@ void analogPinMode(int pin)
 	{
 		gpio_export(232);
 		gpio_direction(232, 1);
-		gpio_unexport(231);
+		gpio_unexport(232);
 	} else
 	{
 		std::cout << "Pin is not supported for current loop" << std::endl;
