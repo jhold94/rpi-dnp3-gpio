@@ -3,6 +3,7 @@
 *  gcc -fno-tree-cselim -Wall -O0 -mcpu=arm9 -o mx28adcctl mx28adcctl.c
 */
 
+#include <iostream>
 #include <assert.h>
 #include <fcntl.h>
 #include <stdio.h>
