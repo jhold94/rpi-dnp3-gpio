@@ -46,6 +46,12 @@ int main(int argc, char *argv[])
 		pinMode(pin, INPUT);
 		std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
 	}
+	
+	for(auto pin : config.aninputs) {
+		digitalWrite(231, 1);
+		digitalWrite(232, 1);
+		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
+	}
 
 	for(auto pin : config.outputs) {
 		pinMode(pin, OUTPUT);
@@ -64,7 +70,7 @@ int main(int argc, char *argv[])
 		DatabaseSizes(
 			config.inputs.size(), // binary
 			0, 
-			0,//config.aninputs.size(), //analog
+			config.aninputs.size(), //analog
 			0, 0,
 			config.outputs.size(), // binary output status
 			0, 0
@@ -96,6 +102,13 @@ int main(int argc, char *argv[])
 			builder.Update(Binary(value, 0x01, time), index);
 			++index;
 		}
+		
+		index = 0;
+		for(auto pin : config.aninputs) {
+			int value = analogRead(pin);
+			builder.Update(Analog(value, 0x01, time), index);
+			++index;
+		}
 
 		index = 0;
 		for(auto pin : config.outputs) {
@@ -119,6 +132,10 @@ bool safe_handler(Config& config, const std::string& section, const std::string&
 		if(section == "input")
 		{
 			return config.AddInput(std::stoi(name));
+		}
+		else if(section == "aninput")
+		{
+			return config.AddAninput(std::stoi(name));
 		}
 		else if(section == "output")
 		{
