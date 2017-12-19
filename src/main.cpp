@@ -63,10 +63,12 @@ int main(int argc, char *argv[])
 	OutstationStackConfig stack(
 		DatabaseSizes(
 			config.inputs.size(), // binary
-			0, 0, 0, 0,
+			0, 
+			0,//config.aninputs.size(), //analog
+			0, 0,
 			config.outputs.size(), // binary output status
 			0, 0
-		)
+		) /* cpp/libs/include/opendnp3/outstation/DatabaseSizes.h */
 	);
 	stack.link = config.link;
 
