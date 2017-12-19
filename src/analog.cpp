@@ -12,8 +12,23 @@
 #include <unistd.h>
 #include "sources/gpiolib.h"
 
-
-
+void analogPinMode(int pin)
+{
+	if (pin == 0)
+	{
+		gpio_export(231);
+		gpio_direction(231, 1);
+		gpio_unexport(231);
+	} else if (pin == 2)
+	{
+		gpio_export(232);
+		gpio_direction(232, 1);
+		gpio_unexport(231);
+	} else
+	{
+		std::cout << "Pin is not supported for current loop" << std::endl;
+	}
+}
 
 //int main(int argc, char **argv)
 int analogRead(int pin) {
