@@ -1,4 +1,5 @@
 #include "GPIOCommandHandler.h"
+#include "sources/gpiolib.h"
 
 using namespace opendnp3;
 
