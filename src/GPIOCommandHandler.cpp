@@ -1,5 +1,4 @@
 #include "GPIOCommandHandler.h"
-#include <wiringPi.h>
 
 using namespace opendnp3;
 
