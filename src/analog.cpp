@@ -14,7 +14,8 @@
 
 
 
-int main(int argc, char **argv) {
+//int main(int argc, char **argv)
+int analogRead(int pin) {
 	volatile unsigned int *mxlradcregs;
 //	volatile unsigned int *mxhsadcregs;
 //	volatile unsigned int *mxclkctrlregs;
@@ -130,21 +131,11 @@ int main(int argc, char **argv) {
 	 *       they must be removed, or the FET on each channel.  And the 
 	 *       math can either use the above numbers, or a tuned equation
 	 *       to handle their bipolar behavior.
-	 *
-	 * Other i.MX28 based SBCs
-	 *   LRADC channels 4:1
-	 *     chan[x] = ((((chan[x]/10)*45177)/100000)*2);
-	 *   LRADC channel 6
-	 *     chan[x] = ((((chan[x]/10)*45177)/1000000)*33);
-	 *   HSADC
-	 *     chan[7] = ((((chan[7]/10)*45177)/100000)*2));
 	 */
 
 
-	for(x = 0; x < 7; x++) {
-		printf("LRADC_ADC%d_val=%d\n", x, (unsigned int)chan[x]/10);
-	}
-	printf("HSADC_val=0x%x\n", (unsigned int)chan[7]/10);
+	meas_mV=((((chan[pin]/10)*45177)*6235)/100000000);
+	meas_uA=(((meas_mV)*1000)/240);
 
-	return 0;
+	return meas_uA;
 }
