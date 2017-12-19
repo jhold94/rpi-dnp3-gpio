@@ -14,5 +14,5 @@ include_directories(deps/inih)
   
 # ---- executable ----
 file(GLOB_RECURSE main_SRC src/*.cpp src/*.h)
-add_executable(rpi-dnp3-gpio deps/inih/ini.c deps/inih/ini.h ${main_SRC} src/GPIOCommandHandler.h)
+add_executable(rpi-dnp3-gpio deps/inih/ini.c deps/inih/ini.h ${main_SRC} src/GPIOCommandHandler.h src/gpio.cpp src/analog.cpp)
 target_link_libraries (rpi-dnp3-gpio asiodnp3 asiopal opendnp3 openpal pthread)
