@@ -11,11 +11,7 @@ extern    int gpio_write(int gpio, int val);
 extern    void pinMode(int pin, int mode);
 extern    void digitalWrite(int pin, bool value);
 extern    int digitalRead(int pin);
-  
-//extern    int dac(int dacpin, int value);
-//extern    int analogInMode(int adcpin, int mode);
-
-  
+extern    int analogRead(int pin);
   
 #ifdef __cplusplus
 }
