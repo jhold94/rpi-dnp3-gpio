@@ -2,7 +2,6 @@
 #include <iostream>
 #include <ini.h>
 #include <stdexcept>
-#include <wiringPi.h>
 
 #include <asiodnp3/DNP3Manager.h>
 #include <asiodnp3/UpdateBuilder.h>
@@ -41,9 +40,6 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	// Initialize wiringPi -- using Broadcom pin numbers
-	// this call automatically terminates program with an error msg if the setup cannot be completed
-	wiringPiSetupGpio();
 
 	// setup inputs and outputs
 	for(auto pin : config.inputs) {
