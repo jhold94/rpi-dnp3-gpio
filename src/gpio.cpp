@@ -24,7 +24,7 @@ int gpio_direction(int gpio, int dir)
 	}
 
 	if(dir == 1 && gpiofd){
-		if (3 != write(gpiofd, "out", 3)) {
+		if (3 != write(gpiofd, "high", 3)) {
 			perror("Couldn't set GPIO direction to out");
 			ret = -2;
 		}
