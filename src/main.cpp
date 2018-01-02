@@ -41,7 +41,10 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-
+	
+	static int twifd;
+	twifd = fpga(NULL, 0);
+	
 	// setup inputs and outputs
 	for(auto pin : config.inputs) {
 		if (pin > 206 && pin < 210)
@@ -92,8 +95,6 @@ int main(int argc, char *argv[])
 
 	std::cout << "Sample period is: " << config.sample_period_ms << std::endl;
         const auto SAMPLE_PERIOD = std::chrono::milliseconds(config.sample_period_ms);
-
-
 
 	while(true) {
 
