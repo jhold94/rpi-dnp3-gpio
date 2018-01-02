@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -7,12 +8,15 @@
 #include <sys/select.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <linux/types.h>
 #include <getopt.h>
+#include <errno.h>
 #include <dirent.h>
 
 #include "sources/gpiolib.h"
 #include "sources/i2c-dev.h"
 
+static int twifd;
 /***************************************************************************************************************
 **			Setup for functions below							      **
 ***************************************************************************************************************/
