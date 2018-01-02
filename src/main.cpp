@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 	
 	// setup inputs and outputs
 	for(auto pin : config.inputs) {
-		if (pin > 206 && pin < 210)
+		if (pin > 205 && pin < 210)
 		{
 			pinMode(pin, 1);
 		} else {
