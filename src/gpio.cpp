@@ -214,7 +214,7 @@ int digitalRead(int pin)
 	
 	if(pin > 205 && pin < 210) 
 	{
-		state = specialDigitalRead(int pin);
+		state = specialDigitalRead(pin);
 		return state;
 	} else {
 		gpio_export(pin);
