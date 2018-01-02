@@ -129,11 +129,18 @@ void pinMode(int pin, int mode)
 
 int digitalRead(int pin)
 {
-	int state;
-	gpio_export(pin);
-	state = gpio_read(pin);
-	gpio_unexport(pin);
-	return state;
+	int state = 0;
+	
+	if(pin > 206 && pin < 210) 
+	{
+		/* state = function_name_goes_here(int pin);
+		return state; */
+	} else {
+		gpio_export(pin);
+		state = gpio_read(pin);
+		gpio_unexport(pin);
+		return state;
+	}
 }
 
 void digitalWrite(int pin, int state)
