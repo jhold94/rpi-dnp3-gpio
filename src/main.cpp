@@ -44,7 +44,12 @@ int main(int argc, char *argv[])
 
 	// setup inputs and outputs
 	for(auto pin : config.inputs) {
-		pinMode(pin, 0);
+		if (pin > 206 && pin < 210)
+		{
+			pinMode(pin, 1);
+		} else {
+			pinMode(pin, 0);
+		}
 		std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
 	}
 	
