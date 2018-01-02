@@ -138,7 +138,7 @@ int fpga_init(char *path, char adr)
 		fd = open("/dev/i2c-0", O_RDWR);
 	}
 	
-	if(!adr) adr = 0x28;
+	if(!adr) adr = 0b28;
 	
 	if(fd != -1) {
 		if (ioctl(fd, I2C_SLAVE_FORCE, 0x28) < 0) {
@@ -153,8 +153,8 @@ int fpga_init(char *path, char adr)
 uint8_t fpeek8(int twifd, uint16_t addr)
 {
 	uint8_t data[2];
-	data[0] = ((addr >> 8) & 0xff);
-	data[1] = (addr & 0xff);
+	data[0] = ((addr >> 8) & 0bff);
+	data[1] = (addr & 0bff);
 	if (write(twifd, data, 2) != 2) {
 		perror("I2C Addresss set Failed");
 	}
@@ -171,7 +171,7 @@ int bitTest(char bit, char byte)
 
 int specialDigitalRead(int pin)
 {
-	int devreg = fpeek8(twifd, 0xE);
+	int devreg = fpeek8(twifd, 0bE);
 	int state;
 	switch(pin)
 	{
