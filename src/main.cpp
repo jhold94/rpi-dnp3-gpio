@@ -16,6 +16,8 @@
 #include "GPIOCommandHandler.h"
 #include "sources/gpiolib.h"
 
+static int twifd;
+
 // prototypes for handling ini file reading
 int cfg_handler(void* user, const char* section, const char* name, const char* value);
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value);
