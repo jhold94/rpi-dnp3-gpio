@@ -40,10 +40,6 @@ int main(int argc, char *argv[])
 		std::cerr << "error parsing ini file: " << filename << std::endl;
 		return -1;
 	}
-
-	
-	static int twifd;
-	twifd = fpga_init(NULL, 0);
 	
 	// setup inputs and outputs
 	for(auto pin : config.inputs) {
