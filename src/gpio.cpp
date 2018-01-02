@@ -146,9 +146,6 @@ int fpga_init(char *path, char adr)
 	return fd;
 }
 
-static int twifd;
-twifd = fpga_init(NULL, 0);
-
 uint8_t fpeek8(int twifd, uint16_t addr)
 {
 	uint8_t data[2];
