@@ -17,6 +17,8 @@
 **			Setup for functions below							      **
 ***************************************************************************************************************/
 
+
+
 int gpio_direction(int gpio, int dir)
 {
 	int ret = 0;
@@ -144,6 +146,9 @@ int fpga_init(char *path, char adr)
 	return fd;
 }
 
+static int twifd;
+twifd = fpga_init(NULL, 0);
+
 uint8_t fpeek8(int twifd, uint16_t addr)
 {
 	uint8_t data[2];
@@ -166,7 +171,7 @@ int bitTest(char bit, char byte)
 int specialDigitalRead(int pin)
 {
 	int devreg = fpeek8(twifd, 0xE);
-	int state
+	int state;
 	switch(pin)
 	{
 		case 207:
