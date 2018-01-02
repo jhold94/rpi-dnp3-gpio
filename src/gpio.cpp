@@ -1,12 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/select.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <getopt.h>
+#include <dirent.h>
+
 #include "sources/gpiolib.h"
+#include "sources/i2c-dev.h"
 
 /***************************************************************************************************************
 **			Setup for functions below							      **
@@ -116,6 +121,76 @@ int gpio_write(int gpio, int val)
 	}
 	return 1;
 }
+
+int fpga_init(char *path, char adr)
+{
+	static int fd =-1;
+	
+	if(fd != -1) return fd;
+	
+	if(path == NULL) {
+		fd = open("/dev/i2c-0", O_RDWR);
+	}
+	
+	if(!adr) adr = 0x28;
+	
+	if(fd != -1) {
+		if (ioctl(fd, I2C_SLAVE_FORCE, 0x28) < 0) {
+			perror("FPGA did not ACK 0x28\n");
+			return -1;
+		}
+	}
+	
+	return fd;
+}
+
+uint8_t fpeek8(int twifd, uint16_t addr)
+{
+	uint8_t data[2];
+	data[0] = ((addr >> 8) & 0xff);
+	data[1] = (addr & 0xff);
+	if (write(twifd, data, 2) != 2) {
+		perror("I2C Addresss set Failed");
+	}
+	read(twifd, data, 1);
+		    
+	return data[0];
+}
+
+int bitTest(char bit, char byte)
+{
+	bit = 1 << bit;
+	return(bit & byte);
+}
+
+int specialDigitalRead(int pin)
+{
+	int devreg = fpeek8(twifd, 0xE);
+	int state
+	switch(pin)
+	{
+		case 207:
+			state = bitTest(0, devreg);
+			break;
+		case 208:
+			state = bitTest(1, devreg);
+			break;
+		case 209:
+			state = bitTest(2, devreg);
+			break;
+		case 206:
+			state = bitTest(3, devreg);
+			break;
+		default:
+			break;
+	}
+	return state;
+}
+
+
+
+			
+			
 /***************************************************************************************************************
 **			Function calls from Main Program						      **
 ***************************************************************************************************************/
@@ -131,9 +206,10 @@ int digitalRead(int pin)
 {
 	int state = 0;
 	
-	if(pin > 206 && pin < 210) 
+	
+	if(pin > 205 && pin < 210) 
 	{
-		/* state = function_name_goes_here(int pin);
+		/* state = specialDigitalRead(int pin);
 		return state; */
 	} else {
 		gpio_export(pin);
