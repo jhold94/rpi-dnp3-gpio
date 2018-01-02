@@ -45,8 +45,6 @@ int main(int argc, char *argv[])
 	for(auto pin : config.inputs) {
 		if (pin > 205 && pin < 210)
 		{
-			static int twifd;
-			twifd = fpga_init(NULL, 0);
 			pinMode(pin, 1);
 		} else {
 			pinMode(pin, 0);
