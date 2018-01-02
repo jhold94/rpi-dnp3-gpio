@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 
 	
 	static int twifd;
-	twifd = fpga(NULL, 0);
+	twifd = fpga_init(NULL, 0);
 	
 	// setup inputs and outputs
 	for(auto pin : config.inputs) {
