@@ -41,6 +41,8 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	
+	twifd = fpga_init(NULL, 0);
+	
 	// setup inputs and outputs
 	for(auto pin : config.inputs) {
 		if (pin > 205 && pin < 210)
