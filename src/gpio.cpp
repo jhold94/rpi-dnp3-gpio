@@ -163,9 +163,9 @@ uint8_t fpeek8(int twifd, uint16_t addr)
 	return data[0];
 }
 
-int bitTest(char bit, char byte)
+int bitRead(int value, char bit)
 {
-	return((1 << bit) & 1U);
+	return((value << bit) & 0x01);
 }
 
 int specialDigitalRead(int pin)
@@ -175,16 +175,16 @@ int specialDigitalRead(int pin)
 	switch(pin)
 	{
 		case 207:
-			state = bitTest(0, devreg);
+			state = bitTest(devreg, 1);
 			break;
 		case 208:
-			state = bitTest(1, devreg);
+			state = bitTest(devreg, 2);
 			break;
 		case 209:
-			state = bitTest(2, devreg);
+			state = bitTest(devreg, 3);
 			break;
 		case 206:
-			state = bitTest(3, devreg);
+			state = bitTest(devreg, 0);
 			break;
 		default:
 			break;
