@@ -209,7 +209,7 @@ void pinMode(int pin, int mode)
 
 int digitalRead(int pin)
 {
-	int state = 0;
+	int state = 1;
 	
 	
 	if(pin > 205 && pin < 210) 
