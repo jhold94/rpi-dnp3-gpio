@@ -37,7 +37,7 @@ void analogPinMode(int pin)
 int analogRead(int pin) {
 	volatile unsigned int *mxlradcregs;
 	unsigned int i, x;
-	unsigned long long chan[8] = {0,0,0,0,0,0,0,0};
+	unsigned long long chan[4] = {0,0,0,0};
 	int devmem, meas_mV, meas_uA;
 
 	devmem = open("/dev/mem", O_RDWR|O_SYNC);
@@ -50,14 +50,14 @@ int analogRead(int pin) {
 	mxlradcregs[0x148/4] = 0xfffffff; //Clear LRADC6:0 assignments
 	mxlradcregs[0x144/4] = 0x6543210; //Set LRDAC6:0 to channel 6:0
 	mxlradcregs[0x28/4] = 0xff000000; //Set 1.8v range
-	for(x = 0; x < 7; x++)
+	for(x = 0; x < 4; x++)
 	  mxlradcregs[(0x50+(x * 0x10))/4] = 0x0; //Clear LRADCx reg
 
 	for(x = 0; x < 10; x++) {
 		mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
 		mxlradcregs[0x4/4] = 0x7f; //Schedule conversaion of chan 6:0
 		while(!((mxlradcregs[0x10/4] & 0x7f) == 0x7f)); //Wait
-		for(i = 0; i < 7; i++)
+		for(i = 0; i < 4; i++)
 		  chan[i] += (mxlradcregs[(0x50+(i * 0x10))/4] & 0xffff);
 	}
 	/* This is where value to voltage conversions would take
