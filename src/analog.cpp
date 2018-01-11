@@ -19,13 +19,13 @@ void analogPinMode(int pin)
 	{
 		gpio_export(231);
 		gpio_direction(231, 1);
-		gpio_value(231, 1);
+		gpio_write(231, 1);
 		gpio_unexport(231);
 	} else if (pin == 2)
 	{
 		gpio_export(232);
 		gpio_direction(232, 1);
-		gpio_value(232, 1);
+		gpio_write(232, 1);
 		gpio_unexport(232);
 	} else
 	{
