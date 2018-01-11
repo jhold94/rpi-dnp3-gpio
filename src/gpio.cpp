@@ -175,16 +175,16 @@ int specialDigitalRead(int pin)
 	switch(pin)
 	{
 		case 207:
-			state = bitTest(devreg, 1);
+			state = bitRead(devreg, 1);
 			break;
 		case 208:
-			state = bitTest(devreg, 2);
+			state = bitRead(devreg, 2);
 			break;
 		case 209:
-			state = bitTest(devreg, 3);
+			state = bitRead(devreg, 3);
 			break;
 		case 206:
-			state = bitTest(devreg, 0);
+			state = bitRead(devreg, 0);
 			break;
 		default:
 			break;
