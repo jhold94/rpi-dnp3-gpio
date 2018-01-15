@@ -16,7 +16,6 @@
 #include "sources/gpiolib.h"
 #include "sources/i2c-dev.h"
 
-static int twifd;
 /***************************************************************************************************************
 **			Setup for functions below							      **
 ***************************************************************************************************************/
@@ -165,35 +164,36 @@ uint8_t fpeek8(int twifd, uint16_t addr)
 
 int bitRead(int value, char bit)
 {
-	return((value << bit) & 0x01);
+	return((value >> it) & 0x01);
 }
 
 int specialDigitalRead(int pin)
 {
+	int twifd = fpga_init(NULL, 0);
 	int devreg = fpeek8(twifd, 0xE);
 	int state;
 	switch(pin)
 	{
 		case 207:
-			state = bitRead(devreg, 1);
+			state = bitRead(devreg, 0);
 			return state;
 			break;
 		case 208:
-			state = bitRead(devreg, 2);
+			state = bitRead(devreg, 1;
 			return state;
 			break;
 		case 209:
-			state = bitRead(devreg, 3);
+			state = bitRead(devreg, 2;
 			return state;
 			break;
 		case 206:
-			state = bitRead(devreg, 0);
+			state = bitRead(devreg, 3;
 			return state;
 			break;
 		default:
 			break;
 	}
-	return state;
+	return 0;
 }
 
 
