@@ -16,8 +16,6 @@
 #include "GPIOCommandHandler.h"
 #include "sources/gpiolib.h"
 
-static int twifd;
-
 // prototypes for handling ini file reading
 int cfg_handler(void* user, const char* section, const char* name, const char* value);
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value);
@@ -42,8 +40,6 @@ int main(int argc, char *argv[])
 		std::cerr << "error parsing ini file: " << filename << std::endl;
 		return -1;
 	}
-	
-	twifd = fpga_init(NULL, 0);
 	
 	// setup inputs and outputs
 	for(auto pin : config.inputs) {
