@@ -164,7 +164,7 @@ uint8_t fpeek8(int twifd, uint16_t addr)
 
 int bitRead(int value, char bit)
 {
-	return((value >> it) & 0x01);
+	return((value >> bit) & 0x01);
 }
 
 int specialDigitalRead(int pin)
