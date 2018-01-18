@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
 	
 	for(auto pin : config.aninputs) {
 		analogPinMode(pin);
+		analog_init();
 		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
 	}
 
