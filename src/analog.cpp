@@ -60,8 +60,9 @@ int analogRead(int pin)
 		mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
 		mxlradcregs[0x4/4] = 0x7f; //Schedule conversaion of chan 6:0
 		while(!((mxlradcregs[0x10/4] & 0x7f) == 0x7f)); //Wait
-		for(i = 0; i < 4; i++)
-		  chan[i] += (mxlradcregs[(0x50+(i * 0x10))/4] & 0xffff);
+		chan[pin] += (mxlradcregs[(0x50+(pin * 0x10))/4] & 0xffff);
+		//for(i = 0; i < 4; i++)
+		  //chan[i] += (mxlradcregs[(0x50+(i * 0x10))/4] & 0xffff);
 	}
 	
         int meas_mV=((((chan[pin]/10)*45177)*6235)/100000000);
