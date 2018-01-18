@@ -135,7 +135,7 @@ int analogRead(int pin) {
 		for(i = 0; i < 4; i++)
 		  chan[i] += (mxlradcregs[(0x50+(i * 0x10))/4] & 0xffff);
 	}
-	/* This is where value to voltage conversions would take
+	 * This is where value to voltage conversions would take
 	 * place.  Values below are generic and can be used as a 
 	 * guideline.  They were derived to be within 1% error,
 	 * however differences in environments, tolerance in components,
