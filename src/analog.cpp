@@ -64,12 +64,12 @@ int analogRead(int pin)
 		//for(i = 0; i < 4; i++)
 		  //chan[i] += (mxlradcregs[(0x50+(i * 0x10))/4] & 0xffff);
 	}
-	//mxlradcregs[0x148/4] = 0xfffffff; //Clear LRADC6:0 assignments
+	mxlradcregs[0x148/4] = 0xfffffff; //Clear LRADC6:0 assignments
 	
         int meas_mV=((((chan[pin]/10)*45177)*6235)/100000000);
 	int meas_uA=(((meas_mV)*1000)/240);
 	
-	mxlradcregs[0x148/4] = 0xfffffff; //Clear LRADC6:0 assignments
+	//mxlradcregs[0x148/4] = 0xfffffff; //Clear LRADC6:0 assignments
 	
 /*	int meas_mV2=((((chan[2]/10)*45177)*6235)/100000000);
 	int meas_uA2=(((meas_mV2)*1000)/240);
