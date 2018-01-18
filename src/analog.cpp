@@ -61,13 +61,12 @@ int analogRead(int pin)
 		mxlradcregs[0x4/4] = 0x7f; //Schedule conversaion of chan 6:0
 		while(!((mxlradcregs[0x10/4] & 0x7f) == 0x7f)); //Wait
 		chan[pin] += (mxlradcregs[(0x50+(pin * 0x10))/4] & 0xffff);
-		
-		for(x = 0; x < 4; x++)
-		{
-	  		mxlradcregs[(0x50+(x * 0x10))/4] = 0x0; //Clear LRADCx reg
-		}
 		//for(i = 0; i < 4; i++)
 		  //chan[i] += (mxlradcregs[(0x50+(i * 0x10))/4] & 0xffff);
+	}
+	for(x = 0; x < 4; x++)
+	{
+		mxlradcregs[(0x50+(x * 0x10))/4] = 0x0; //Clear LRADCx reg
 	}
 	
         int meas_mV=((((chan[pin]/10)*45177)*6235)/100000000);
