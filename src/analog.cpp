@@ -15,7 +15,7 @@
 
 volatile unsigned int *mxlradcregs;
 unsigned int i, x;
-unsigned long long chan[4] = {0,0,0,0};
+//unsigned long long chan[4] = {0,0,0,0};
 int devmem;
 
 void analogPinMode(int pin)
@@ -56,6 +56,7 @@ void analog_init(void)
 
 int analogRead(int pin)
 {	
+	unsigned long long chan[4] = {0,0,0,0};
 	for(x = 0; x < 10; x++) {
 		mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
 		mxlradcregs[0x4/4] = 0x7f; //Schedule conversaion of chan 6:0
@@ -64,7 +65,7 @@ int analogRead(int pin)
 		//for(i = 0; i < 4; i++)
 		  //chan[i] += (mxlradcregs[(0x50+(i * 0x10))/4] & 0xffff);
 	}
-	mxlradcregs[0x148/4] = 0xfffffff; //Clear LRADC6:0 assignments
+	//mxlradcregs[0x148/4] = 0xfffffff; //Clear LRADC6:0 assignments
 	
         int meas_mV=((((chan[pin]/10)*45177)*6235)/100000000);
 	int meas_uA=(((meas_mV)*1000)/240);
