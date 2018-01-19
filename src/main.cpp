@@ -52,9 +52,10 @@ int main(int argc, char *argv[])
 		std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
 	}
 	
+	analog_init();
+	
 	for(auto pin : config.aninputs) {
 		analogPinMode(pin);
-		analog_init();
 		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
 	}
 
