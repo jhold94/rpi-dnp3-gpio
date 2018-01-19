@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
 		index = 0;
 		for(auto pin : config.aninputs) {
 			int value = analogRead(pin);
-			builder.Update(Analog(value, 0x01, time), index);
+			builder.Update(Analog(value, 0x01, time), index, opendnp3::EventMode::Detect);
 			++index;
 		}
 
