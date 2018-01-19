@@ -57,6 +57,7 @@ void analog_init(void)
 int analogRead(int pin)
 {	
 	unsigned long long chan[4] = {0,0,0,0};
+	
 	for(x = 0; x < 10; x++) {
 		mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
 		mxlradcregs[0x4/4] = 0x7f; //Schedule conversaion of chan 6:0
