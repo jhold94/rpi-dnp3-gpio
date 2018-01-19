@@ -76,7 +76,7 @@ int analogRead(int pin)
 	//1.1736608125[x] or (281678595/240000000)[x]
 	
 	//return meas_uA;
-	return (281678595/240000000) * [x];
+	return (281678595/240000000) * chan[pin];
 		
 }
 
