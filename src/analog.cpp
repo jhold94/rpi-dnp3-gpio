@@ -67,16 +67,15 @@ int analogRead(int pin)
 		  //chan[i] += (mxlradcregs[(0x50+(i * 0x10))/4] & 0xffff);
 	//}
 	
+	float value = chan[pin];
+	
         //int meas_mV=((((chan[pin]/10)*45177)*6235)/100000000);
 	//int meas_uA=(((meas_mV)*1000)/240);
-	
-	//mxlradcregs[0x148/4] = 0xfffffff; //Clear LRADC6:0 assignments
-	
 	
 	//1.1736608125[x] or (281678595/240000000)[x]
 	
 	//return meas_uA;
-	return /*(281678595/240000000) */ chan[pin];
+	return value;
 		
 }
 
