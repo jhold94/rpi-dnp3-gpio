@@ -86,6 +86,7 @@ int main(int argc, char *argv[])
 
 	stack.outstation.eventBufferConfig = EventBufferConfig(50);
 	stack.outstation.params.allowUnsolicited = true;
+	stack.outstation.EventConfig.DeadbandConfig = 20;
 
 	auto outstation = channel->AddOutstation("outstation", commandHandler, DefaultOutstationApplication::Create(), stack);
 
@@ -110,7 +111,7 @@ int main(int argc, char *argv[])
 		index = 0;
 		for(auto pin : config.aninputs) {
 			int value = analogRead(pin);
-			builder.Update(Analog(value, 0x01, time), index, opendnp3::EventMode::Detect);
+			builder.Update(Analog(value, 0x01, time), index);
 			++index;
 		}
 
