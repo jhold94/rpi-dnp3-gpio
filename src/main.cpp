@@ -111,15 +111,15 @@ int main(int argc, char *argv[])
 		
 		index = 0;
 		for(auto pin : config.aninputs) {
-			int value = analogRead(pin);
-			builder.Update(Analog(value, 0x01, time), index);
+			int anValue = analogRead(pin);
+			builder.Update(Analog(anValue, 0x01, time), index);
 			++index;
 		}
 
 		index = 0;
 		for(auto pin : config.outputs) {
-			bool value = digitalRead(pin);
-			builder.Update(BinaryOutputStatus(value, 0x01, time), index);
+			bool outValue = digitalRead(pin);
+			builder.Update(BinaryOutputStatus(outValue, 0x01, time), index);
 			++index;
 		}
 
