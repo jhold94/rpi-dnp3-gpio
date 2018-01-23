@@ -86,7 +86,8 @@ int main(int argc, char *argv[])
 
 	stack.outstation.eventBufferConfig = EventBufferConfig(50);
 	stack.outstation.params.allowUnsolicited = true;
-	
+	stack.dbConfig.analog[0].deadband = 100;
+	stack.dbConfig.analog[1].deadband = 100;	
 
 	auto outstation = channel->AddOutstation("outstation", commandHandler, DefaultOutstationApplication::Create(), stack);
 
