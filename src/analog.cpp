@@ -83,6 +83,6 @@ int analogRead(int pin)
 {
 	int x = 0;
 	x++;
-	if (x = 100) x = 0;
+	if (x == 100) x = 0;
 	return x;
 }
