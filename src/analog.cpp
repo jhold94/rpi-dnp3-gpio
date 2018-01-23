@@ -54,7 +54,7 @@ void analog_init(void)
 	  mxlradcregs[(0x50+(x * 0x10))/4] = 0x0; //Clear LRADCx reg
 }
 
-int analogRead(int pin)
+/*int analogRead(int pin)
 {	
 	unsigned long long chan[4] = {0,0,0,0};
 	
@@ -77,4 +77,12 @@ int analogRead(int pin)
 	return meas_uA;
 	//return value;
 		
+} */
+
+int analogRead(int pin)
+{
+	int x = 0;
+	x++;
+	if (x = 100) x = 0;
+	return x;
 }
