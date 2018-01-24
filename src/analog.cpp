@@ -52,6 +52,7 @@ void analog_init(void)
 	mxlradcregs[0x28/4] = 0xff000000; //Set 1.8v range
 	for(x = 0; x < 4; x++)
 	  mxlradcregs[(0x50+(x * 0x10))/4] = 0x0; //Clear LRADCx reg
+	mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
 }
 
 int analogRead(int pin)
@@ -59,7 +60,7 @@ int analogRead(int pin)
 	unsigned long long chan[4] = {0,0,0,0};
 	
 	//for(x = 0; x < 10; x++) {
-		mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
+		//mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
 		mxlradcregs[0x4/4] = 0x7f; //Schedule conversaion of chan 6:0
 		while(!((mxlradcregs[0x10/4] & 0x7f) == 0x7f)); //Wait
 		chan[pin] = (mxlradcregs[(0x50+(pin * 0x10))/4] & 0xffff);
