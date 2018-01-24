@@ -63,8 +63,14 @@ int main(int argc, char *argv[])
 		pinMode(pin, 1);
 		std::cout << "pin " << static_cast<int>(pin) << " set as OUTPUT" << std::endl;
 	}
+	
+	/*for(auto pin : config.anoutputs) {
+		
+		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG OUTPUT" << std::endl;
+	}*/
 
 	const auto commandHandler = std::make_shared<GPIOCommandHandler>(config.outputs);
+	//const auto commandHandler = std::make_shared<GPIOCommandHandler>(config.anoutputs);
 
 	const auto LOG_LEVELS = levels::NORMAL | levels::ALL_APP_COMMS;
 
@@ -79,7 +85,8 @@ int main(int argc, char *argv[])
 			config.aninputs.size(), //analog
 			0, 0,
 			config.outputs.size(), // binary output status
-			0, 0
+			0, //config.anoutputs.size(), //analog output status
+			0
 		) /* cpp/libs/include/opendnp3/outstation/DatabaseSizes.h */
 	);
 	stack.link = config.link;
