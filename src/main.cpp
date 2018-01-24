@@ -86,8 +86,7 @@ int main(int argc, char *argv[])
 
 	stack.outstation.eventBufferConfig = EventBufferConfig(50);
 	stack.outstation.params.allowUnsolicited = true;
-	stack.dbConfig.analog[0].deadband = 100;
-	stack.dbConfig.analog[1].deadband = 100;	
+	
 
 	auto outstation = channel->AddOutstation("outstation", commandHandler, DefaultOutstationApplication::Create(), stack);
 
@@ -129,6 +128,8 @@ int main(int argc, char *argv[])
 		// determines the sampling rate
 		std::this_thread::sleep_for(SAMPLE_PERIOD);
 	}
+	stack.dbConfig.analog[0].deadband = 100;
+	stack.dbConfig.analog[1].deadband = 100;
 }
 
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value)
