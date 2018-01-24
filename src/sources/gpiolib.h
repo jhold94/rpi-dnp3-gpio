@@ -18,6 +18,7 @@ extern "C" {
   extern    uint8_t fpeek8(int twifd, uint16_t addr);
   extern    int bitRead(int value, char bit);
   extern    int specialDigitalRead(int pin);
+  extern    void analogWrite(int pin, int value);
   
 #ifdef __cplusplus
 }
