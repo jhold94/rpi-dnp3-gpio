@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -78,4 +79,40 @@ int analogRead(int pin)
 	return meas_uA;
 	//return value;
 		
+}
+
+void analogWrite(int pin, int value)
+{
+	int twifd = fpga_init(NULL, 0);
+	
+	int value = value * 360;
+	
+	int opt_dac = ((strtoul(value, NULL, 0) & 0xfff)<<1)|0x1;
+	
+	char buf[2];
+	buf[0] = ((opt_dac >> 9) & 0xf);
+	buf[1] = ((opt_dac >> 1) & 0xff);
+	
+	switch(pin)
+	{
+		case 0:
+			fpoke8(twifd, 0x2E, buf[0]);
+			fpoke8(twifd, 0x2F, buf[1]);
+			break;
+		case 1:
+			fpoke8(twifd, 0x30, buf[0]);
+			fpoke8(twifd, 0x31, buf[1]);
+			break;
+		case 2:
+			fpoke8(twifd, 0x32, buf[0]);
+			fpoke8(twifd, 0x33, buf[1]);
+			break;
+		case 3:
+			fpoke8(twifd, 0x34, buf[0]);
+			fpoke8(twifd, 0x35, buf[1]);
+			break;
+		default:
+			break;
+	}			
+			
 }
