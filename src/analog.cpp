@@ -1,7 +1,3 @@
-/* To compile:
-*
-*  gcc -fno-tree-cselim -Wall -O0 -mcpu=arm9 -o mx28adcctl mx28adcctl.c
-*/
 
 #include <iostream>
 #include <assert.h>
@@ -16,7 +12,6 @@
 
 volatile unsigned int *mxlradcregs;
 unsigned int i, x;
-//unsigned long long chan[4] = {0,0,0,0};
 int devmem;
 
 void analogPinMode(int pin)
@@ -44,7 +39,6 @@ void analog_init(void)
 	devmem = open("/dev/mem", O_RDWR|O_SYNC);
 	assert(devmem != -1);
 
-	// LRADC
 	mxlradcregs = (unsigned int *) mmap(0, getpagesize(),
 	  PROT_READ | PROT_WRITE, MAP_SHARED, devmem, 0x80050000);
 
@@ -53,7 +47,6 @@ void analog_init(void)
 	mxlradcregs[0x28/4] = 0xff000000; //Set 1.8v range
 	for(x = 0; x < 4; x++)
 	  mxlradcregs[(0x50+(x * 0x10))/4] = 0x0; //Clear LRADCx reg
-	//mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
 }
 
 int analogRead(int pin)
