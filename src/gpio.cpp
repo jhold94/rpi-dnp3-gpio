@@ -234,4 +234,10 @@ void digitalWrite(int pin, int state)
 	gpio_write(pin, state); // 1 = HIGH / 0 = LOW
 	gpio_unexport(pin);
 }
-	
+
+void statusTwoOn(void);
+{
+	gpio_export(56);
+	gpio_write(56, 1);
+	gpio_unexport(56);
+}
