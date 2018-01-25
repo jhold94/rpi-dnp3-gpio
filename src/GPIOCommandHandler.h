@@ -1,5 +1,5 @@
-#ifndef RPI_DNP3_GPIO_GPIOCOMMANDHANDLER_H
-#define RPI_DNP3_GPIO_GPIOCOMMANDHANDLER_H
+#ifndef TS_DNP3_GPIOCOMMANDHANDLER_H
+#define TS_DNP3_GPIOCOMMANDHANDLER_H
 
 #include <opendnp3/outstation/ICommandHandler.h>
 
@@ -50,4 +50,4 @@ private:
     std::map<uint16_t, uint8_t> dnp2gpio;
 };
 
-#endif //RPI_DNP3_GPIO_GPIOCOMMANDHANDLER_H
+#endif //TS_DNP3_GPIOCOMMANDHANDLER_H
