@@ -1,6 +1,6 @@
-# rpi-dnp3-gpio
+# ts-dnp3
 
-DNP3 outstation implementation mapped to Raspberry PI's GPIO pins
+DNP3 outstation implementation mapped to TS-7680's GPIO and Analog Input pins
 
 # prerequisites
 
@@ -15,11 +15,8 @@ This project and opendnp3 require cmake and GCC 4.8:
 The library also uses the [inih](https://github.com/benhoyt/inih) library for reading configuration files. This is specified as a git submodule, so be sure to clone this repository recursively:
 
 ```
-git clone --recursive https://github.com/automatak/rpi-dnp3-gpio.git
+git clone --recursive https://github.com/jhold94/ts-dnp3.git
 ```
-## wiringPI
-
-Build and install the [WiringPi](https://projects.drogon.net/raspberry-pi/wiringpi/download-and-install/) library.
 
 ## opendnp3
 
@@ -36,7 +33,6 @@ Build and install the 2.2.0 release of [opendnp3](https://github.com/automatak/d
 The build uses cmake:
 
 ```
-> mkdir build
 > cd build
 > cmake ..
 > make
@@ -47,7 +43,7 @@ The build uses cmake:
 The program takes a single argument, the path to the INI configuration file:
 
 ```
-> ./rpi-dnp3-gpio ../default.ini
+> ./ts-dnp3 ../default.ini
 ```
 
 
