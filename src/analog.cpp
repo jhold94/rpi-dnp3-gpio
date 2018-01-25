@@ -53,7 +53,7 @@ int analogRead(int pin)
 {	
 	unsigned long long chan[4] = {0,0,0,0};
 	
-	for(x = 0; x < 10; x++) {
+	for(x = 0; x < 20; x++) {
 		mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
 		mxlradcregs[0x4/4] = 0x7f; //Schedule conversaion of chan 6:0
 		while(!((mxlradcregs[0x10/4] & 0x7f) == 0x7f)); //Wait
@@ -64,7 +64,7 @@ int analogRead(int pin)
 	
 	//float value = chan[pin];
 	
-        int meas_mV=((((chan[pin]/10)*45177)*6235)/100000000);
+        int meas_mV=((((chan[pin]/20)*45177)*6235)/100000000);
 	int meas_uA=(((meas_mV)*1000)/240);
 	
 	//1.1736608125[x] or (281678595/240000000)[x]
