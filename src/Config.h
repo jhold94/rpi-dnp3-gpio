@@ -1,5 +1,5 @@
-#ifndef RPI_DNP3_GPIO_CONFIG_H
-#define RPI_DNP3_GPIO_CONFIG_H
+#ifndef TS_DNP3_CONFIG_H
+#define TS_DNP3_CONFIG_H
 
 #include <cstdint>
 #include <vector>
@@ -37,4 +37,4 @@ private:
     std::set<uint8_t> assigned;
 };
 
-#endif //RPI_DNP3_GPIO_CONFIG_H
+#endif //TS_DNP3_CONFIG_H
