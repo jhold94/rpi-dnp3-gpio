@@ -238,6 +238,7 @@ void digitalWrite(int pin, int state)
 void statusTwoOn(void)
 {
 	gpio_export(56);
+	gpio_direction(56, 1);
 	gpio_write(56, 1);
 	gpio_unexport(56);
 }
