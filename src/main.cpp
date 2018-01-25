@@ -137,6 +137,7 @@ int main(int argc, char *argv[])
 		std::this_thread::sleep_for(SAMPLE_PERIOD);
 	}
 
+	statusTwoOn();
 }
 
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value)
