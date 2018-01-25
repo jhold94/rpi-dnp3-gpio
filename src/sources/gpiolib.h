@@ -19,6 +19,7 @@ extern "C" {
   extern    int bitRead(int value, char bit);
   extern    int specialDigitalRead(int pin);
   extern    void analogWrite(int pin, int value);
+  extern    void statusTwoOn(void);
   
 #ifdef __cplusplus
 }
