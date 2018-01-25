@@ -102,6 +102,8 @@ int main(int argc, char *argv[])
 
 	std::cout << "Sample period is: " << config.sample_period_ms << std::endl;
         const auto SAMPLE_PERIOD = std::chrono::milliseconds(config.sample_period_ms);
+	
+	statusTwoOn();
 
 	while(true) {
 
@@ -136,8 +138,6 @@ int main(int argc, char *argv[])
 		// determines the sampling rate
 		std::this_thread::sleep_for(SAMPLE_PERIOD);
 	}
-
-	statusTwoOn();
 }
 
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value)
