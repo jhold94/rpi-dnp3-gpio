@@ -13,7 +13,7 @@ class Config
    
 public:
 
-    Config() : link(false, false), sample_period_ms(100)
+    Config() : link(false, false), sample_period_ms(100), deadband(50)
     {}
 
     bool AddInput(uint8_t gpiopin);
@@ -28,6 +28,7 @@ public:
 
     opendnp3::LinkConfig link;
     int sample_period_ms;
+    int deadband;
     int port;
 
 private:
