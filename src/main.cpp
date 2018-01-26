@@ -93,8 +93,8 @@ int main(int argc, char *argv[])
 
 	stack.outstation.eventBufferConfig = EventBufferConfig(50,0,150,0,0,50,0,0);
 	stack.outstation.params.allowUnsolicited = true;
-	stack.dbConfig.analog[0].deadband = 50;
-	stack.dbConfig.analog[1].deadband = 50;	
+	stack.dbConfig.analog[0].deadband = config.deadband;
+	stack.dbConfig.analog[1].deadband = config.deadband;
 
 	auto outstation = channel->AddOutstation("outstation", commandHandler, DefaultOutstationApplication::Create(), stack);
 
@@ -102,8 +102,6 @@ int main(int argc, char *argv[])
 
 	std::cout << "Sample period is: " << config.sample_period_ms << std::endl;
         const auto SAMPLE_PERIOD = std::chrono::milliseconds(config.sample_period_ms);
-	
-	statusTwoOn();
 
 	while(true) {
 
@@ -162,6 +160,10 @@ bool safe_handler(Config& config, const std::string& section, const std::string&
 			{
 				config.sample_period_ms = std::stoi(value);
 				return true;
+			}
+			if(name == "deadband")
+			{
+				config.deadband = std::stoi(value);
 			}
 		}
 		else if(section == "link")
