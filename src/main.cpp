@@ -161,7 +161,7 @@ bool safe_handler(Config& config, const std::string& section, const std::string&
 				config.sample_period_ms = std::stoi(value);
 				return true;
 			}
-			if(name == "deadband")
+			else if(name == "deadband")
 			{
 				config.deadband = std::stoi(value);
 			}
