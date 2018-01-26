@@ -164,6 +164,7 @@ bool safe_handler(Config& config, const std::string& section, const std::string&
 			else if(name == "deadband")
 			{
 				config.deadband = std::stoi(value);
+				return true;
 			}
 		}
 		else if(section == "link")
