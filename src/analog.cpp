@@ -58,20 +58,12 @@ int analogRead(int pin)
 		mxlradcregs[0x4/4] = 0x7f; //Schedule conversaion of chan 6:0
 		while(!((mxlradcregs[0x10/4] & 0x7f) == 0x7f)); //Wait
 		chan[pin] += (mxlradcregs[(0x50+(pin * 0x10))/4] & 0xffff);
-		//for(i = 0; i < 4; i++)
-		  //chan[i] += (mxlradcregs[(0x50+(i * 0x10))/4] & 0xffff);
 	}
-	
-	//float value = chan[pin];
 	
         int meas_mV=((((chan[pin]/20)*45177)*6235)/100000000);
 	int meas_uA=(((meas_mV)*1000)/240);
 	
-	//1.1736608125[x] or (281678595/240000000)[x]
-	
-	return meas_uA;
-	//return value;
-		
+	return meas_uA;		
 }
 
 /* void analogWrite(int pin, int value)
