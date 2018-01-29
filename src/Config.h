@@ -19,12 +19,12 @@ public:
     bool AddInput(uint8_t gpiopin);
     bool AddAninput(uint8_t gpiopin);
     bool AddOutput(uint8_t gpiopin);
-    bool AddAnoutput(uint8_t gpiopin);
+//    bool AddAnoutput(uint8_t gpiopin);
 
     std::vector<uint8_t> inputs;
     std::vector<uint8_t> aninputs;
     std::vector<uint8_t> outputs;
-    std::vector<uint8_t> anoutputs;
+//    std::vector<uint8_t> anoutputs;
 
     opendnp3::LinkConfig link;
     int sample_period_ms;
