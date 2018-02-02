@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ini.h>
 #include <stdexcept>
+#include <modbus.h>
 
 #include <asiodnp3/DNP3Manager.h>
 #include <asiodnp3/UpdateBuilder.h>
@@ -15,6 +16,7 @@
 #include "Config.h"
 #include "GPIOCommandHandler.h"
 #include "sources/gpiolib.h"
+#include "sources/modbusCommand.h"
 
 // prototypes for handling ini file reading
 int cfg_handler(void* user, const char* section, const char* name, const char* value);
@@ -78,6 +80,11 @@ int main(int argc, char *argv[])
 
 	auto channel = manager.AddTCPServer("server", LOG_LEVELS, ChannelRetry::Default(), "0.0.0.0", config.port, PrintingChannelListener::Create());
 
+	/* Modbus Link stuff */
+	modbus_t *mb;
+	mb = modbus_new_tcp("192.168.24.24", 502);
+	modbus_connect(mb);
+	
 	OutstationStackConfig stack(
 		DatabaseSizes(
 			config.inputs.size(), // binary
@@ -111,21 +118,36 @@ int main(int argc, char *argv[])
 
 		uint16_t index = 0;
 		for(auto pin : config.inputs) {
-			bool value = digitalRead(pin);
+			if (pin < 1000)
+			{
+				bool value = digitalRead(pin);
+			} else {
+				bool value = dmReadBit(pin);
+			}
 			builder.Update(Binary(value, 0x01, time), index);
 			++index;
 		}
 		
 		index = 0;
 		for(auto pin : config.aninputs) {
-			int anValue = analogRead(pin);
+			if (pin < 1000) 
+			{
+				int anValue = analogRead(pin);
+			} else {
+				int anValue = dmReadInReg(pin);
+			}
 			builder.Update(Analog(anValue, 0x01, time), index);
 			++index;
 		}
 
 		index = 0;
 		for(auto pin : config.outputs) {
-			bool outValue = digitalRead(pin);
+			if (pin < 1000)
+			{
+				bool outValue = digitalRead(pin);
+			} else {
+				bool outValue = mbReadOutBit(pin);
+			}
 			builder.Update(BinaryOutputStatus(outValue, 0x01, time), index);
 			++index;
 		}
@@ -136,6 +158,10 @@ int main(int argc, char *argv[])
 		// determines the sampling rate
 		std::this_thread::sleep_for(SAMPLE_PERIOD);
 	}
+	
+	/* More modbus stuff */
+	modbus_close(mb);
+	modbus_free(mb);
 }
 
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value)
