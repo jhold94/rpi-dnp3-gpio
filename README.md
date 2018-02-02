@@ -1,6 +1,6 @@
-# ts-dnp3
+# ts-dnp3-modbus
 
-DNP3 outstation implementation mapped to TS-7680's GPIO and Analog Input pins
+DNP3 outstation implementation mapped to TS-7680's GPIO and Analog Input pins with the ability to add a Modbus TCP/IP compatible device
 
 # prerequisites
 
