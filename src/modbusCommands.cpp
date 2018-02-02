@@ -6,6 +6,8 @@
 #include <errno.h>
 #include <sys/socket.h>
 
+#include "sources/modbusCommands.h"
+
 int dmWriteBit(int index, bool state)
 {
         int state;
