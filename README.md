@@ -15,7 +15,7 @@ This project and opendnp3 require cmake and GCC 4.8:
 The library also uses the [inih](https://github.com/benhoyt/inih) library for reading configuration files. This is specified as a git submodule, so be sure to clone this repository recursively:
 
 ```
-git clone --recursive https://github.com/jhold94/ts-dnp3.git
+> git clone --recursive https://github.com/jhold94/ts-dnp3.git
 ```
 
 ### opendnp3
@@ -43,6 +43,10 @@ The build uses cmake:
 ### setup
 
 Edit default.ini with preferred editor details are inside file
+
+```
+> nano ../default.ini
+```
 
 ### usage 
 
