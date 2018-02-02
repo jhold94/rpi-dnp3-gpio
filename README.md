@@ -2,7 +2,7 @@
 
 DNP3 outstation implementation mapped to TS-7680's GPIO and Analog Input pins with the ability to add a Modbus TCP/IP compatible device
 
-# prerequisites
+## prerequisites
 
 This project and opendnp3 require cmake and GCC 4.8:
 
@@ -10,7 +10,7 @@ This project and opendnp3 require cmake and GCC 4.8:
 > sudo apt-get install g++-4.8 cmake
 ```
 
-# dependencies
+## dependencies
 
 The library also uses the [inih](https://github.com/benhoyt/inih) library for reading configuration files. This is specified as a git submodule, so be sure to clone this repository recursively:
 
@@ -18,7 +18,7 @@ The library also uses the [inih](https://github.com/benhoyt/inih) library for re
 git clone --recursive https://github.com/jhold94/ts-dnp3.git
 ```
 
-## opendnp3
+### opendnp3
 
 Build and install the 2.2.0 release of [opendnp3](https://github.com/automatak/dnp3). Build instructions are [here](https://automatak.com/opendnp3/docs/guide/current/build/cmake/).
 
@@ -28,7 +28,7 @@ Build and install the 2.2.0 release of [opendnp3](https://github.com/automatak/d
 > sudo make install
 ```
 
-# building
+## building
 
 The build uses cmake:
 
@@ -38,7 +38,13 @@ The build uses cmake:
 > make
 ```
 
-#usage 
+## Running
+
+### setup
+
+Edit default.ini with preferred editor details are inside file
+
+### usage 
 
 The program takes a single argument, the path to the INI configuration file:
 
