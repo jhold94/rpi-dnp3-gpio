@@ -1,5 +1,6 @@
 #include "GPIOCommandHandler.h"
 #include "sources/gpiolib.h"
+#include "sources/modbusCommands.h"
 
 using namespace opendnp3;
 
@@ -30,7 +31,12 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
 
     if(ret == CommandStatus::SUCCESS)
     {
-        digitalWrite(gpio, state);
+        if (gpio > 1000) 
+        {
+            digitalWrite(gpio, state);
+        } else {
+            dmWriteBit((gpio - 1000), state);
+        }
     }
 
     return ret;
