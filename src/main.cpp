@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 	analog_init();
 	
 	for(auto pin : config.aninputs) {
-		if (pin < 1000) 
+		if (pin < 100) 
 		{
 			analogPinMode(pin);
 		} else {
@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
 		index = 0;
 		for(auto pin : config.aninputs) {
 			int anValue;
-			if (pin < 1000) 
+			if (pin < 100) 
 			{
 				anValue = analogRead(pin);
 			} else {
