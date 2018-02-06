@@ -82,9 +82,7 @@ int main(int argc, char *argv[])
 	auto channel = manager.AddTCPServer("server", LOG_LEVELS, ChannelRetry::Default(), "0.0.0.0", config.port, PrintingChannelListener::Create());
 
 	/* Modbus Link stuff */
-	//modbus_t *mb;
-	//mb = modbus_new_tcp("192.168.24.24", 502);
-	modbus_connect(mb);
+	modbus_init();
 	
 	OutstationStackConfig stack(
 		DatabaseSizes(
