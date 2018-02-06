@@ -49,6 +49,8 @@ int main(int argc, char *argv[])
 		if (pin > 205 && pin < 210)
 		{
 			pinMode(pin, 1);
+		} if else (pin = 1000 || pin > 1000) {
+			continue;
 		} else {
 			pinMode(pin, 0);
 		}
@@ -58,12 +60,22 @@ int main(int argc, char *argv[])
 	analog_init();
 	
 	for(auto pin : config.aninputs) {
-		analogPinMode(pin);
+		if (pin < 1000) 
+		{
+			analogPinMode(pin);
+		} else {
+			continue;
+		}
 		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
 	}
 
 	for(auto pin : config.outputs) {
-		pinMode(pin, 1);
+		if (pin < 1000) 
+		{
+			pinMode(pin, 1);
+		} else {
+			continue;
+		}
 		std::cout << "pin " << static_cast<int>(pin) << " set as OUTPUT" << std::endl;
 	}
 	
