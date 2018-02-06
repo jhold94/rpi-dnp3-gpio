@@ -1,4 +1,5 @@
 #include <modbus/modbus.h>
+#include <modbus/modbus-tcp.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -7,6 +8,9 @@
 #include <sys/socket.h>
 
 #include "sources/modbusCommands.h"
+
+modbus_t *mb;
+mb = modbus_new_tcp("192.168.24.24", 502);
 
 void dmWriteBit(int index, bool state)
 {
@@ -18,8 +22,8 @@ int dmReadBit(int index)
         index = index - 1000;
         
         int state;
-        uint8_t = inbit_tab[100];
-        modbus_read_bits(mb, index, index, inbit_tab);
+        uint8_t inbit_tab[100];
+        modbus_read_input_bits(mb, index, index, inbit_tab);
         
         state = inbit_tab[index];
         
