@@ -18,7 +18,7 @@ int dmReadBit(int index)
         index = index - 1000;
         
         int state;
-        unit8_t = inbit_tab[100];
+        uint8_t = inbit_tab[100];
         modbus_read_bits(mb, index, index, inbit_tab);
         
         state = inbit_tab[index];
@@ -47,7 +47,7 @@ int dmReadInReg(int index)
         uint16_t inreg_tab[100];
         modbus_read_input_registers(mb, index, index, inreg_tab);
         
-        state = inreg_tab[index];
+        value = inreg_tab[index];
         
-        return state;
+        return value;
 }
