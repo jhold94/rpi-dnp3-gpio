@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 		if (pin > 205 && pin < 210)
 		{
 			pinMode(pin, 1);
-		} if else (pin = 1000 || pin > 1000) {
+		} else if ((pin = 1000) || (pin > 1000)) {
 			continue;
 		} else {
 			pinMode(pin, 0);
