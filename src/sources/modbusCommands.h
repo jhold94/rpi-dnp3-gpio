@@ -8,6 +8,7 @@ extern "C" {
   extern    int dmReadBit(int index);
   extern    int dmReadOutBit(int index);
   extern    int dmReadInReg(int index);
+  extern    void modbusExit(void);
   
 #ifdef __cplusplus
 }
