@@ -8,12 +8,9 @@
 
 #include "sources/modbusCommands.h"
 
-int dmWriteBit(int index, bool state)
+void dmWriteBit(int index, bool state)
 {
-        int state;
-        state = modbus_write_bit(mb, index, state);
-        
-        return state;
+        modbus_write_bit(mb, index, state);
 }
 
 int dmReadBit(int index)
