@@ -3,6 +3,7 @@
 extern "C" {
 #endif
 
+  extern    void modbus_init(void);
   extern    void dmWriteBit(int index, bool state);
   extern    int dmReadBit(int index);
   extern    int dmReadOutBit(int index);
