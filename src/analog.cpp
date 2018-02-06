@@ -30,7 +30,10 @@ void analogPinMode(int pin)
 		gpio_unexport(232);
 	} else
 	{
-		printf("Pin is not supported for current loop");
+		if (pin < 100)
+		{
+			printf("Pin is not supported for current loop\n");
+		}
 	}
 }
 
