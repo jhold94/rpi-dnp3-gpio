@@ -117,11 +117,12 @@ int main(int argc, char *argv[])
 
 		uint16_t index = 0;
 		for(auto pin : config.inputs) {
+			bool value;
 			if (pin < 1000)
 			{
-				bool value = digitalRead(pin);
+				value = digitalRead(pin);
 			} else {
-				bool value = dmReadBit(pin);
+				value = dmReadBit(pin);
 			}
 			builder.Update(Binary(value, 0x01, time), index);
 			++index;
@@ -129,11 +130,12 @@ int main(int argc, char *argv[])
 		
 		index = 0;
 		for(auto pin : config.aninputs) {
+			int anvalue;
 			if (pin < 1000) 
 			{
-				int anValue = analogRead(pin);
+				anValue = analogRead(pin);
 			} else {
-				int anValue = dmReadInReg(pin);
+				anValue = dmReadInReg(pin);
 			}
 			builder.Update(Analog(anValue, 0x01, time), index);
 			++index;
@@ -141,11 +143,12 @@ int main(int argc, char *argv[])
 
 		index = 0;
 		for(auto pin : config.outputs) {
+			bool outValue;
 			if (pin < 1000)
 			{
-				bool outValue = digitalRead(pin);
+				outValue = digitalRead(pin);
 			} else {
-				bool outValue = mbReadOutBit(pin);
+				outValue = dmReadOutBit(pin);
 			}
 			builder.Update(BinaryOutputStatus(outValue, 0x01, time), index);
 			++index;
