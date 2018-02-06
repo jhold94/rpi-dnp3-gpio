@@ -162,8 +162,7 @@ int main(int argc, char *argv[])
 	}
 	
 	/* More modbus stuff */
-	modbus_close(mb);
-	modbus_free(mb);
+	modbusExit();
 }
 
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value)
