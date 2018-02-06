@@ -60,3 +60,9 @@ int dmReadInReg(int index)
         
         return value;
 }
+
+void modbusExit(void)
+{
+        modbus_close(mb);
+	modbus_free(mb);
+}
