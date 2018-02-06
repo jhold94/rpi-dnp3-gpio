@@ -3,7 +3,7 @@
 extern "C" {
 #endif
 
-  extern    int dmWriteBit(int index, bool state);
+  extern    void dmWriteBit(int index, bool state);
   extern    int dmReadBit(int index);
   extern    int dmReadOutBit(int index);
   extern    int dmReadInReg(int index);
