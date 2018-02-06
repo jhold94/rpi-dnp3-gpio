@@ -9,9 +9,10 @@
 
 #include "sources/modbusCommands.h"
 
+modbus_t *mb;
+
 void modbus_init(void)
 {
-        modbus_t *mb;
         mb = modbus_new_tcp("192.168.24.24", 502);
         modbus_connect(mb);
 }
