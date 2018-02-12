@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 		if (pin > 205 && pin < 210)
 		{
 			pinMode(pin, 1);
-		} else if ((pin = 1000) || (pin > 1000)) {
+		} else if (pin > 999) {
 			continue;
 		} else {
 			pinMode(pin, 0);
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 	analog_init();
 	
 	for(auto pin : config.aninputs) {
-		if (pin < 100) 
+		if (pin < 5) 
 		{
 			analogPinMode(pin);
 		} else {
