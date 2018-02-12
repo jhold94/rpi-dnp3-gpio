@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
 		index = 0;
 		for(auto pin : config.aninputs) {
 			int anValue;
-			if (pin < 100) 
+			if (pin < 5) 
 			{
 				anValue = analogRead(pin);
 			} else {
