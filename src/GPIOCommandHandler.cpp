@@ -4,7 +4,7 @@
 
 using namespace opendnp3;
 
-GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint8_t> gpiopins)
+GPIOCommandHandler::GPIOCommandHandler0(const std::vector<uint8_t> gpiopins)
 {
     uint16_t index = 0;
 
@@ -14,7 +14,7 @@ GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint8_t> gpiopins)
     }
 }
 
-GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint8_t> analogpins)
+GPIOCommandHandler::GPIOCommandHandler1(const std::vector<uint8_t> analogpins)
 {
     uint16_t index = 0;
     
