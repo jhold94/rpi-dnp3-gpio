@@ -9,7 +9,8 @@
 
 class Config
 {
-    typedef std::vector<uint8_t> assignvec;
+    typedef std::vector<uint8_t> assignvec0;
+    typedef std::vector<uint8_t> assignvec1;
    
 public:
 
@@ -19,12 +20,12 @@ public:
     bool AddInput(uint8_t gpiopin);
     bool AddAninput(uint8_t gpiopin);
     bool AddOutput(uint8_t gpiopin);
-//    bool AddAnoutput(uint8_t gpiopin);
+    bool AddAnoutput(uint8_t analogpin);
 
     std::vector<uint8_t> inputs;
     std::vector<uint8_t> aninputs;
     std::vector<uint8_t> outputs;
-//    std::vector<uint8_t> anoutputs;
+    std::vector<uint8_t> anoutputs;
 
     opendnp3::LinkConfig link;
     int sample_period_ms;
@@ -33,7 +34,8 @@ public:
 
 private:
 
-    bool Add(uint8_t gpiopin, assignvec& vec);
+    bool Add(uint8_t gpiopin, assignvec& vec0);
+    bool Add(uint8_t analogpin, assignvec& vec1);
 
     std::set<uint8_t> assigned;
 };
