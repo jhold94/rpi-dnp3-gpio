@@ -10,7 +10,9 @@ class GPIOCommandHandler final : public opendnp3::ICommandHandler
 {
 
 public:
-    GPIOCommandHandler(const std::vector<uint8_t> gpiopins);
+    GPIOCommandHandler0(const std::vector<uint8_t> gpiopins);
+    
+    GPIOCommandHandler1(const std::vector<uint8_t> analogpins);
 
     void Start() override {}
     void End() override {}
