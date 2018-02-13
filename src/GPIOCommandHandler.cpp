@@ -14,6 +14,16 @@ GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint8_t> gpiopins)
     }
 }
 
+GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint8_t> analogpins)
+{
+    uint16_t index = 0;
+    
+    for(auto pin : analogpins) {
+        dnp2analogpin[index] = pin;
+        ++index;
+    }
+}
+
 CommandStatus GPIOCommandHandler::Select(const ControlRelayOutputBlock& command, uint16_t index)
 {
     uint8_t gpio = 0;
@@ -35,7 +45,7 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
         {
             digitalWrite(gpio, state);
         } else {
-            dmWriteBit((gpio - 1000), state);
+           // dmWriteBit((gpio - 1000), state);
         }
     }
 
@@ -95,5 +105,11 @@ CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::Contr
 
 CommandStatus GPIOCommandHandler::GetPinAndValue(uint16_t index, opendnp3::ControlCode code, uint8_t& analogpin, uint16_t& value)
 {
-    //do stuff here
+    auto iter = dnp2analogpin.find(index);
+    if(iter == dnp2analogpin.end()) {
+        return CommandStatus::NOT_SUPPORTED;
+    }
+    
+    analogpin = iter->second;
+    return CommandStatus::SUCCESS;
 }
