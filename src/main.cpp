@@ -20,7 +20,7 @@
 #include "sources/modbusCommands.h"
 
 // prototypes for handling ini file reading
-int cfg_handler(void* user, const char* section, const int* name, const char* value);
+int cfg_handler(void* user, const char* section, const char* name, const int* value);
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value);
 
 using namespace opendnp3;
@@ -235,7 +235,7 @@ bool safe_handler(Config& config, const std::string& section, const std::string&
 	}
 }
 
-int cfg_handler(void* user, const char* section, const int* name, const char* value)
+int cfg_handler(void* user, const char* section, const char* name, const int* value)
 {
 	return safe_handler(*(Config*)user, section, name, value) ? 1 : 0;
 }
