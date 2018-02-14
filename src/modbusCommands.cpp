@@ -27,7 +27,7 @@ void dmWriteBit(int index, bool state)
 
 int dmReadBit(int index)
 {
-        index = index - 1000;
+        index = index - 500;
         
         int state;
         uint8_t inbit_tab[100];
