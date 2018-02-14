@@ -27,7 +27,7 @@ void dmWriteBit(int index, bool state)
 
 int dmReadBit(int index)
 {
-        index = index - 500;
+        index = index - 10;
         
         int state;
         uint8_t inbit_tab[100];
@@ -40,7 +40,7 @@ int dmReadBit(int index)
 
 int dmReadOutBit(int index)
 {
-        index = index - 1000;
+        index = index - 10;
         
         int state;
         uint8_t outbit_tab[100];
@@ -53,7 +53,7 @@ int dmReadOutBit(int index)
 
 int dmReadInReg(int index)
 {
-        index = index - 1000;
+        index = index - 5;
         
         int value;
         uint16_t inreg_tab[100];
