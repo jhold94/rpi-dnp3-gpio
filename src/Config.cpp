@@ -1,7 +1,7 @@
 
 #include "Config.h"
 
-bool Config::AddInput(uint16_t gpiopin)
+bool Config::AddInput(uint8_t gpiopin)
 {
     return Add(gpiopin, inputs);
 }
