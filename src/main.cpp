@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 		if (pin > 205 && pin < 210)
 		{
 			pinMode(pin, 1);
-		} else if (pin > 499) {
+		} else if ((pin == 0) || (pin > 0 && pin < 100)) {
 			continue;
 		} else {
 			pinMode(pin, 0);
@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
 		uint16_t index = 0;
 		for(int pin : config.inputs) {
 			bool value;
-			if (pin < 499)
+			if (pin > 100)
 			{
 				value = digitalRead(pin);
 			} else {
