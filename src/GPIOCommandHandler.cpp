@@ -4,7 +4,7 @@
 
 using namespace opendnp3;
 
-GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint8_t> gpiopins)
+GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint8_t> gpiopins, const std::vector<uint8_t> analogpins)
 {
     uint16_t index = 0;
 
@@ -14,15 +14,15 @@ GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint8_t> gpiopins)
     }
 }
 
-GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint8_t> analogpins)
+/*GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint8_t> analogpins)
 {
     uint16_t index = 0;
     
-    for(auto pin : analogpins) {
+    for(auto pin : config.anoutputs) {
         dnp2analogpin[index] = pin;
         ++index;
     }
-}
+}*/
 
 CommandStatus GPIOCommandHandler::Select(const ControlRelayOutputBlock& command, uint16_t index)
 {
