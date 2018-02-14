@@ -17,15 +17,15 @@ public:
     Config() : link(false, false), sample_period_ms(100), deadband(50)
     {}
 
-    bool AddInput(uint16_t gpiopin);
-    bool AddAninput(uint16_t gpiopin);
-    bool AddOutput(uint16_t gpiopin);
-    bool AddAnoutput(uint16_t analogpin);
+    bool AddInput(uint8_t gpiopin);
+    bool AddAninput(uint8_t gpiopin);
+    bool AddOutput(uint8_t gpiopin);
+    bool AddAnoutput(uint8_t analogpin);
 
-    std::vector<uint8_t> inputs;
-    std::vector<uint8_t> aninputs;
-    std::vector<uint8_t> outputs;
-    std::vector<uint8_t> anoutputs;
+    std::vector<uint16_t> inputs;
+    std::vector<uint16_t> aninputs;
+    std::vector<uint16_t> outputs;
+    std::vector<uint16_t> anoutputs;
 
     opendnp3::LinkConfig link;
     int sample_period_ms;
