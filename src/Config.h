@@ -22,7 +22,7 @@ public:
     bool AddOutput(uint8_t gpiopin);
     bool AddAnoutput(uint8_t analogpin);
 
-    std::vector<uint8_t> inputs;
+    std::vector<uint16_t> inputs;
     std::vector<uint8_t> aninputs;
     std::vector<uint8_t> outputs;
     std::vector<uint8_t> anoutputs;
