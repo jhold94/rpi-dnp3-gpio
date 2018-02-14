@@ -9,7 +9,7 @@
 
 class Config
 {
-    typedef std::vector<uint16_t> assignvec0;
+    typedef std::vector<uint8_t> assignvec0;
     typedef std::vector<uint8_t> assignvec1;
    
 public:
