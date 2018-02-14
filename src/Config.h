@@ -10,7 +10,7 @@
 class Config
 {
     typedef std::vector<uint16_t> assignvec0;
-    typedef std::vector<uint16_t> assignvec1;
+    typedef std::vector<uint8_t> assignvec1;
    
 public:
 
@@ -34,8 +34,8 @@ public:
 
 private:
 
-    bool Add(uint16_t gpiopin, assignvec0& vec0);
-    bool Add1(uint16_t analogpin, assignvec1& vec1);
+    bool Add(uint8_t gpiopin, assignvec0& vec0);
+    bool Add1(uint8_t analogpin, assignvec1& vec1);
 
     std::set<uint16_t> assigned;
 };
