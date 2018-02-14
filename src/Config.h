@@ -37,7 +37,7 @@ private:
     bool Add(uint8_t gpiopin, assignvec0& vec0);
     bool Add1(uint8_t analogpin, assignvec1& vec1);
 
-    std::set<uint16_t> assigned;
+    std::set<uint8_t> assigned;
 };
 
 #endif //TS_DNP3_CONFIG_H
