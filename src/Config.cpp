@@ -35,7 +35,7 @@ bool Config::Add(uint16_t gpiopin, assignvec0& vec0)
     return true;
 }
 
-bool Config::Add1(uint8_t analogpin, assignvec1& vec1)
+bool Config::Add1(uint16_t analogpin, assignvec1& vec1)
 {
     // first check if the pin is assigned
     if(assigned.find(analogpin) != assigned.end())
