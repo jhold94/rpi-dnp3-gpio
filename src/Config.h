@@ -22,10 +22,10 @@ public:
     bool AddOutput(uint16_t gpiopin);
     bool AddAnoutput(uint16_t analogpin);
 
-    std::vector<uint16_t> inputs;
-    std::vector<uint16_t> aninputs;
-    std::vector<uint16_t> outputs;
-    std::vector<uint16_t> anoutputs;
+    std::vector<uint8_t> inputs;
+    std::vector<uint8_t> aninputs;
+    std::vector<uint8_t> outputs;
+    std::vector<uint8_t> anoutputs;
 
     opendnp3::LinkConfig link;
     int sample_period_ms;
