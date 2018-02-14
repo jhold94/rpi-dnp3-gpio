@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	}
 	
 	// setup inputs and outputs
-	for(auto pin : config.inputs) {
+	for(int pin : config.inputs) {
 		if (pin > 205 && pin < 210)
 		{
 			pinMode(pin, 1);
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 	
 	analog_init();
 	
-	for(auto pin : config.aninputs) {
+	for(int pin : config.aninputs) {
 		if (pin < 5) 
 		{
 			analogPinMode(pin);
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
 	}
 
-	for(auto pin : config.outputs) {
+	for(int pin : config.outputs) {
 		if (pin < 1000) 
 		{
 			pinMode(pin, 1);
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 		std::cout << "pin " << static_cast<int>(pin) << " set as OUTPUT" << std::endl;
 	}
 	
-	/*for(auto pin : config.anoutputs) {
+	/*for(int pin : config.anoutputs) {
 		
 		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG OUTPUT" << std::endl;
 	}*/
@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
 		UpdateBuilder builder;
 
 		uint16_t index = 0;
-		for(auto pin : config.inputs) {
+		for(int pin : config.inputs) {
 			bool value;
 			if (pin < 499)
 			{
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
 		}
 		
 		index = 0;
-		for(auto pin : config.aninputs) {
+		for(int pin : config.aninputs) {
 			int anValue;
 			if (pin < 5) 
 			{
@@ -154,7 +154,7 @@ int main(int argc, char *argv[])
 		}
 
 		index = 0;
-		for(auto pin : config.outputs) {
+		for(int pin : config.outputs) {
 			bool outValue;
 			if (pin < 1000)
 			{
