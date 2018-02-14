@@ -22,10 +22,10 @@ public:
     bool AddOutput(uint8_t gpiopin);
     bool AddAnoutput(uint8_t analogpin);
 
-    std::vector<uint16_t> inputs;
-    std::vector<uint16_t> aninputs;
-    std::vector<uint16_t> outputs;
-    std::vector<uint16_t> anoutputs;
+    std::vector<uint8_t> inputs;
+    std::vector<uint8_t> aninputs;
+    std::vector<uint8_t> outputs;
+    std::vector<uint8_t> anoutputs;
 
     opendnp3::LinkConfig link;
     int sample_period_ms;
@@ -37,7 +37,7 @@ private:
     bool Add(uint16_t gpiopin, assignvec0& vec0);
     bool Add1(uint16_t analogpin, assignvec1& vec1);
 
-    std::set<uint8_t> assigned;
+    std::set<uint16_t> assigned;
 };
 
 #endif //TS_DNP3_CONFIG_H
