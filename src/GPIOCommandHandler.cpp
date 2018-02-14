@@ -52,7 +52,7 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
     return ret;
 }
 
-opendnp3::CommandStatus Select(const opendnp3::AnalogOutputInt16& command, uint16_t index)
+/*opendnp3::CommandStatus Select(const opendnp3::AnalogOutputInt16& command, uint16_t index)
 {
     uint8_t analogpin = 0;
     uint16_t value = 0;
@@ -60,7 +60,7 @@ opendnp3::CommandStatus Select(const opendnp3::AnalogOutputInt16& command, uint1
     return GetPinAndValue(index, command.functoinCode, analogpin, value);
 }
 
-opendnp3::CommandStatus Operate(const opendnp3::AnalogOutputInt16& command, uint16_t index, opendnp3::OperateType opType)
+ opendnp3::CommandStatus Operate(const opendnp3::AnalogOutputInt16& command, uint16_t index, opendnp3::OperateType opType)
 {
     uint8_t analogpin = 0;
     uint16_t value = 0;
@@ -79,7 +79,7 @@ opendnp3::CommandStatus Operate(const opendnp3::AnalogOutputInt16& command, uint
     
     return ret;
 }
-
+*/
 CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::ControlCode code, uint8_t& gpio, bool& state)
 {
     switch(code)
@@ -102,7 +102,7 @@ CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::Contr
     gpio = iter->second;
     return CommandStatus::SUCCESS;
 }
-
+/*
 CommandStatus GPIOCommandHandler::GetPinAndValue(uint16_t index, opendnp3::ControlCode code, uint8_t& analogpin, uint16_t& value)
 {
     auto iter = dnp2analogpin.find(index);
@@ -112,4 +112,4 @@ CommandStatus GPIOCommandHandler::GetPinAndValue(uint16_t index, opendnp3::Contr
     
     analogpin = iter->second;
     return CommandStatus::SUCCESS;
-}
+}*/
