@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <sys/socket.h>
+#include <iostream>
 
 #include "sources/modbusCommands.h"
 
@@ -25,7 +26,6 @@ void modbus_init(void)
 	{
 		std::cout << "Failed to allocate the mapping" << std::endl;
 		modbus_free(mb);
-		return -1;
 	}
 	
 	s = modbus_tcp_listen(mb, 1);
@@ -40,7 +40,7 @@ void dmWriteBit(int index, bool state)
 int dmReadBit(int index)
 {
 	
-	rc = modbus_recieve(ctx, query);
+	rc = modbus_recieve(mb, query);
 	if(rc > 0) 
 	{
 		modbus_reply(mb, query, rc, mb_mapping);
@@ -61,7 +61,7 @@ int dmReadBit(int index)
 
 int dmReadOutBit(int index)
 {
-	rc = modbus_recieve(ctx, query);
+	rc = modbus_recieve(mb, query);
 	if(rc > 0) 
 	{
 		modbus_reply(mb, query, rc, mb_mapping);
