@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 		{
 			pinMode(pin, 1);
 		} else if ((pin > 9 && pin < 100)) {
-			continue;
+			std::cout << "modbus thingy" << std::endl;
 		} else {
 			pinMode(pin, 0);
 		}
