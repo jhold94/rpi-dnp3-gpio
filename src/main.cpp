@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
 
 	DNP3Manager manager(1, ConsoleLogger::Create());
 
-	auto channel = manager.AddTCPServer("server", LOG_LEVELS, ChannelRetry::Default(), "10.0.2.11", config.port, PrintingChannelListener::Create());
+	auto channel = manager.AddTCPServer("server", LOG_LEVELS, ChannelRetry::Default(), "0.0.0.0", config.port, PrintingChannelListener::Create());
 
 	/* Modbus Link stuff */
 	//modbus_init();
