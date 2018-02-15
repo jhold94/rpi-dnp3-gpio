@@ -16,7 +16,7 @@ void modbus_init(void)
 	int s;
         mb = modbus_new_tcp("192.168.24.24", 502);
         modbus_connect(mb);
-	modbus_tcp_listen(mb, 1);
+	s = modbus_tcp_listen(mb, 1);
 	modbus_tcp_accept(mb, &s);
 }
 
