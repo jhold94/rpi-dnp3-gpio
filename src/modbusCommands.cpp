@@ -10,23 +10,44 @@
 #include "sources/modbusCommands.h"
 
 modbus_t *mb;
+int s;
+modbus_mapping_t *mb_mapping;
+
+uint8_t query[MODBUS_TCP_MAX_ADU_LENGTH];
+int rc;
 
 void modbus_init(void)
 {
-	int s;
         mb = modbus_new_tcp("192.168.24.24", 502);
-        modbus_connect(mb);
+        
+	mb_mapping = modbus_mapping_new(10,10,10,10);
+	if(mb_mapping == NULL) 
+	{
+		std::cout << "Failed to allocate the mapping" << std::endl;
+		modbus_free(mb);
+		return -1;
+	}
+	
 	s = modbus_tcp_listen(mb, 1);
 	modbus_tcp_accept(mb, &s);
 }
 
 void dmWriteBit(int index, bool state)
 {
-        modbus_write_bit(mb, index, state);
+	modbus_write_bit(mb, index, state);
 }
 
 int dmReadBit(int index)
 {
+	
+	rc = modbus_recieve(ctx, query);
+	if(rc > 0) 
+	{
+		modbus_reply(mb, query, rc, mb_mapping);
+	} else if (rc == -1) {
+		break;
+	}
+	
         index = index - 10;
         
         int state;
@@ -40,6 +61,14 @@ int dmReadBit(int index)
 
 int dmReadOutBit(int index)
 {
+	rc = modbus_recieve(ctx, query);
+	if(rc > 0) 
+	{
+		modbus_reply(mb, query, rc, mb_mapping);
+	} else if (rc == -1) {
+		break;
+	}
+	
         index = index - 10;
         
         int state;
