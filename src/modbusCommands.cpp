@@ -45,7 +45,7 @@ int dmReadBit(int index)
 	{
 		modbus_reply(mb, query, rc, mb_mapping);
 	} else if (rc == -1) {
-		break;
+		
 	}
 	
         index = index - 10;
@@ -66,7 +66,7 @@ int dmReadOutBit(int index)
 	{
 		modbus_reply(mb, query, rc, mb_mapping);
 	} else if (rc == -1) {
-		break;
+		
 	}
 	
         index = index - 10;
