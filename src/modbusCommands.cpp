@@ -40,7 +40,7 @@ void dmWriteBit(int index, bool state)
 int dmReadBit(int index)
 {
 	
-	rc = modbus_recieve(mb, query);
+	rc = modbus_receive(mb, query);
 	if(rc > 0) 
 	{
 		modbus_reply(mb, query, rc, mb_mapping);
@@ -61,7 +61,7 @@ int dmReadBit(int index)
 
 int dmReadOutBit(int index)
 {
-	rc = modbus_recieve(mb, query);
+	rc = modbus_receive(mb, query);
 	if(rc > 0) 
 	{
 		modbus_reply(mb, query, rc, mb_mapping);
