@@ -19,7 +19,7 @@ int rc;
 
 void modbus_init(void)
 {
-        mb = modbus_new_tcp("192.168.24.24", 502);
+        mb = modbus_new_tcp(NULL, 502);
         
 	mb_mapping = modbus_mapping_new(10,10,10,10);
 	if(mb_mapping == NULL) 
