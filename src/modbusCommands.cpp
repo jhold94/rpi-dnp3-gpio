@@ -39,24 +39,28 @@ void dmWriteBit(int index, bool state)
 
 int dmReadBit(int index)
 {
+	modbus_init();
 	
 	rc = modbus_receive(mb, query);
 	if(rc > 0) 
 	{
 		modbus_reply(mb, query, rc, mb_mapping);
-	} else if (rc == -1) {
-		
 	}
 	
         index = index - 10;
-        
+        	
         int state;
-        uint8_t inbit_tab[100];
+        
+	state = mb_mapping->tab_bits[index];
+	/*
+	uint8_t inbit_tab[100];
         modbus_read_input_bits(mb, index, index, inbit_tab);
         
-        state = inbit_tab[index];
+        state = inbit_tab[index];*/
         
         return state;
+	
+	modbusExit();
 }
 
 int dmReadOutBit(int index)
@@ -70,7 +74,7 @@ int dmReadOutBit(int index)
 	}
 	
         index = index - 10;
-        
+	
         int state;
         uint8_t outbit_tab[100];
         modbus_read_bits(mb, index, index, outbit_tab);
