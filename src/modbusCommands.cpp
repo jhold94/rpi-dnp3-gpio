@@ -41,7 +41,7 @@ void dmWriteBit(int index, bool state)
 
 int dmReadBit(int index)
 {
-	modbus_init();
+	//modbus_init();
 	
 	/*rc = modbus_receive(mb, query);
 	if(rc > 0) 
@@ -62,7 +62,7 @@ int dmReadBit(int index)
         
         return state;
 	
-	modbusExit();
+	//modbusExit();
 }
 
 int dmReadOutBit(int index)
