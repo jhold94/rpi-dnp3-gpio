@@ -67,13 +67,13 @@ int dmReadBit(int index)
 
 int dmReadOutBit(int index)
 {
-	rc = modbus_receive(mb, query);
+	/*rc = modbus_receive(mb, query);
 	if(rc > 0) 
 	{
 		modbus_reply(mb, query, rc, mb_mapping);
 	} else if (rc == -1) {
 		
-	}
+	}*/
 	
         index = index - 10;
 	
