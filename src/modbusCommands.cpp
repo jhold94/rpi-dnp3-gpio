@@ -20,6 +20,8 @@ int rc;
 void modbus_init(void)
 {
         mb = modbus_new_tcp(NULL, 502);
+	
+	modbus_set_slave(mb, 5);
         
 	mb_mapping = modbus_mapping_new(10,10,10,10);
 	if(mb_mapping == NULL) 
