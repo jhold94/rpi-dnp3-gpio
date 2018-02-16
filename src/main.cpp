@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 	auto channel = manager.AddTCPServer("server", LOG_LEVELS, ChannelRetry::Default(), "0.0.0.0", config.port, PrintingChannelListener::Create());
 
 	/* Modbus Link stuff */
-	//modbus_init();
+	modbus_init();
 	
 	OutstationStackConfig stack(
 		DatabaseSizes(
@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
 	}
 	
 	/* More modbus stuff */
-	//modbusExit();
+	modbusExit();
 }
 
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value)
