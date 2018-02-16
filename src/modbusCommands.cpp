@@ -55,8 +55,8 @@ int dmReadBit(int index)
         
 	//state = mb_mapping->tab_bits[index];
 	
-	uint8_t inBit[5];
-        modbus_read_input_bits(mb, 0, 5, inBit);
+	uint8_t inBit[(index + 1)];
+        modbus_read_input_bits(mb, 0, (index + 1), inBit);
         
         state = inBit[index];
         
