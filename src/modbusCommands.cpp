@@ -29,7 +29,7 @@ void modbus_init(void)
 		std::cout << "Failed to allocate the mapping" << std::endl;
 		modbus_free(mb);
 	}*/
-	
+	modbus_connect(mb);
 	s = modbus_tcp_listen(mb, 1);
 	modbus_tcp_accept(mb, &s);
 }
