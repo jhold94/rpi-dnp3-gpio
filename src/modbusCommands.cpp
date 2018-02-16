@@ -51,7 +51,7 @@ int dmReadBit(int index)
 	
         index = index - 10;
         	
-        int state;
+        int state = 0;
         
 	//state = mb_mapping->tab_bits[index];
 	
