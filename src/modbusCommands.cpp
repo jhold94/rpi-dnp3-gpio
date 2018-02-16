@@ -16,6 +16,7 @@ int s;
 
 //uint8_t query[MODBUS_TCP_MAX_ADU_LENGTH];
 int rc;
+int state = 0;
 
 void modbus_init(void)
 {
@@ -50,9 +51,7 @@ int dmReadBit(int index)
 	}*/
 	
         index = index - 10;
-        	
-        int state = 0;
-        
+       
 	//state = mb_mapping->tab_bits[index];
 	
 	uint8_t inBit[(index + 1)];
