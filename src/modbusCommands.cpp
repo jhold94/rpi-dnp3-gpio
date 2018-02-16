@@ -12,9 +12,9 @@
 
 modbus_t *mb;
 int s;
-modbus_mapping_t *mb_mapping;
+//modbus_mapping_t *mb_mapping;
 
-uint8_t query[MODBUS_TCP_MAX_ADU_LENGTH];
+//uint8_t query[MODBUS_TCP_MAX_ADU_LENGTH];
 int rc;
 
 void modbus_init(void)
@@ -23,12 +23,12 @@ void modbus_init(void)
 	
 	modbus_set_slave(mb, 5);
         
-	mb_mapping = modbus_mapping_new(10,10,10,10);
+	/*mb_mapping = modbus_mapping_new(10,10,10,10);
 	if(mb_mapping == NULL) 
 	{
 		std::cout << "Failed to allocate the mapping" << std::endl;
 		modbus_free(mb);
-	}
+	}*/
 	
 	s = modbus_tcp_listen(mb, 1);
 	modbus_tcp_accept(mb, &s);
@@ -43,22 +43,22 @@ int dmReadBit(int index)
 {
 	modbus_init();
 	
-	rc = modbus_receive(mb, query);
+	/*rc = modbus_receive(mb, query);
 	if(rc > 0) 
 	{
 		modbus_reply(mb, query, rc, mb_mapping);
-	}
+	}*/
 	
         index = index - 10;
         	
         int state;
         
-	state = mb_mapping->tab_bits[index];
-	/*
-	uint8_t inbit_tab[100];
-        modbus_read_input_bits(mb, index, index, inbit_tab);
+	//state = mb_mapping->tab_bits[index];
+	
+	uint8_t inBit[5];
+        modbus_read_input_bits(mb, 0, 5, inBit);
         
-        state = inbit_tab[index];*/
+        state = inBit[index];
         
         return state;
 	
