@@ -11,14 +11,14 @@
 
 #include "sources/modbusCommands.h"
 
-#define MAX_READ_BITS 20
+#define MAX_READ_BITS 10
 
 uint8_t *tab_bit;
 uint8_t *tab_input_bit;
 uint16_t *tab_reg;
 modbus_t *ctx;
 int nb_points;
-int rc;
+
 
 
 
@@ -43,6 +43,8 @@ void modbus_init(void)
 
 int dmReadBit(int index)
 {
+        int rc;
+        
         index = index - 10;
         
         nb_points = MAX_READ_BITS;
@@ -53,6 +55,8 @@ int dmReadBit(int index)
 
 int dmReadOutBit(int index)
 {
+        int rc;
+        
         index = index - 20;
         
         nb_points = MAX_READ_BITS;
@@ -67,7 +71,7 @@ void dmWriteBit(int index, int state)
         
         tab_bit[index] = state;
         
-        modbus_write_bit(ctx, index, /*state); */tab_bit[index]);
+        modbus_write_bit(ctx, index, tab_bit[index]);
 }
 
 void modbus_exit(void)
