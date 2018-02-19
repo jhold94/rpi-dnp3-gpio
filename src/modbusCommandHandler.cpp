@@ -11,7 +11,7 @@
 
 #include "sources/modbusCommands.h"
 
-#define MAX_READ_BITS 5
+#define MAX_READ_BITS 20
 
 uint8_t *tab_bit;
 uint16_t *tab_reg;
@@ -31,9 +31,14 @@ void modbus_init(void)
                 modbus_free(ctx);
         }
         
-        /* Allocate and initialize the memory to store the status */
+        /* Allocate and initialize the memory to store Input Bits */
+        tab_input_bit = (uint8_t *) malloc(MAX_READ_BITS * sizeof(uint8_t));
+        memset(tab_input_bit, 0, MAX_READ_BITS * sizeof(uint8_t));
+        
+        /* Allocate and initialize the memory to store Read Output Bits */
         tab_bit = (uint8_t *) malloc(MAX_READ_BITS * sizeof(uint8_t));
         memset(tab_bit, 0, MAX_READ_BITS * sizeof(uint8_t));
+        
 }
 
 int dmReadBit(int index)
@@ -41,9 +46,19 @@ int dmReadBit(int index)
         index = index - 10;
         
         nb_points = MAX_READ_BITS;
-        rc = modbus_read_input_bits(ctx, 0, nb_points, tab_bit);
+        rc = modbus_read_input_bits(ctx, 0, nb_points, tab_input_bit);
         
         return tab_bit[index];
+}
+
+int dmReadOutBit(int index)
+{
+        index = index - 20;
+        
+        nb_points = MAX_READ_BITS;
+        rc = modbus_read_bits(ctx, 0, nb_points, tab_bit);
+        
+        return tab_bit[index];        
 }
 
 void modbus_exit(void)
