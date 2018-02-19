@@ -16,10 +16,7 @@
 uint8_t *tab_bit;
 uint16_t *tab_reg;
 modbus_t *ctx;
-int i;
 int nb_points;
-uint32_t bytes;
-uint32_t rate;
 int rc;
 
 
