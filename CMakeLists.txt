@@ -14,5 +14,5 @@ include_directories(deps/inih)
   
 # ---- executable ----
 file(GLOB_RECURSE main_SRC src/*.cpp src/*.h)
-add_executable(ts-dnp3 deps/inih/ini.c deps/inih/ini.h ${main_SRC} src/GPIOCommandHandler.h src/gpio.cpp src/analog.cpp src/modbusCommands.cpp)
+add_executable(ts-dnp3 deps/inih/ini.c deps/inih/ini.h ${main_SRC} src/GPIOCommandHandler.h src/gpio.cpp src/analog.cpp src/modbusCommandHandler.cpp)
 target_link_libraries (ts-dnp3 asiodnp3 asiopal opendnp3 openpal pthread modbus)
