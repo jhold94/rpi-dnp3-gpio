@@ -21,9 +21,7 @@ uint32_t bytes;
 uint32_t rate;
 int rc;
 
-/* Allocate and initialize the memory to store the status */
-tab_bit = (uint8_t *) malloc(MODBUS_MAX_READ_BITS * sizeof(uint8_t));
-memset(tab_bit, 0, MODBUS_MAX_READ_BITS * sizeof(uint8_t));
+
 
 void modbus_init(void)
 {
@@ -34,6 +32,10 @@ void modbus_init(void)
         if(modbus_connect(ctx) == -1) {
                 modbus_free(ctx);
         }
+        
+        /* Allocate and initialize the memory to store the status */
+        tab_bit = (uint8_t *) malloc(MODBUS_MAX_READ_BITS * sizeof(uint8_t));
+        memset(tab_bit, 0, MODBUS_MAX_READ_BITS * sizeof(uint8_t));
 }
 
 int dmReadBits(int index)
