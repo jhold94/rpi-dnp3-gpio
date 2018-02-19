@@ -65,9 +65,9 @@ void dmWriteBit(int index, int state)
 {
         index = index - 20;
         
-        //tab_bit[index] = state;
+        tab_bit[index] = state;
         
-        modbus_write_bit(ctx, index, state); //tab_bit);
+        modbus_write_bit(ctx, index, /*state); */tab_bit);
 }
 
 void modbus_exit(void)
