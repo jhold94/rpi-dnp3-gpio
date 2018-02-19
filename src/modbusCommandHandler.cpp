@@ -48,7 +48,7 @@ int dmReadBit(int index)
         nb_points = MAX_READ_BITS;
         rc = modbus_read_input_bits(ctx, 0, nb_points, tab_input_bit);
         
-        return tab_bit[index];
+        return tab_input_bit[index];
 }
 
 int dmReadOutBit(int index)
