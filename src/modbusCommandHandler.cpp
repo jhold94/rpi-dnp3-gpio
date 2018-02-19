@@ -10,7 +10,7 @@
 
 #include "sources/modbusCommands.h"
 
-#define MAX_READ_BITS 5;
+#define MAX_READ_BITS 5
 
 uint8_t *tab_bit;
 uint16_t *tab_reg;
