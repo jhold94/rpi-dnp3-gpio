@@ -10,7 +10,7 @@
 
 #include "sources/modbusCommands.h"
 
-#define MODBUS_MAX_READ_BITS 5;
+#define MAX_READ_BITS 5;
 
 uint8_t *tab_bit;
 uint16_t *tab_reg;
@@ -34,15 +34,15 @@ void modbus_init(void)
         }
         
         /* Allocate and initialize the memory to store the status */
-        tab_bit = (uint8_t *) malloc(MODBUS_MAX_READ_BITS * sizeof(uint8_t));
-        memset(tab_bit, 0, MODBUS_MAX_READ_BITS * sizeof(uint8_t));
+        tab_bit = (uint8_t *) malloc(MAX_READ_BITS * sizeof(uint8_t));
+        memset(tab_bit, 0, MAX_READ_BITS * sizeof(uint8_t));
 }
 
 int dmReadBits(int index)
 {
         index = index - 10;
         
-        nb_points = MODBUS_MAX_READ_BITS;
+        nb_points = MAX_READ_BITS;
         rc = modbus_read_bits(ctx, 0, nb_points, tab_bit);
         
         return tab_bits[index];
