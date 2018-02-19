@@ -14,6 +14,7 @@
 #define MAX_READ_BITS 20
 
 uint8_t *tab_bit;
+uint8_t *tab_input_bit;
 uint16_t *tab_reg;
 modbus_t *ctx;
 int nb_points;
@@ -31,14 +32,13 @@ void modbus_init(void)
                 modbus_free(ctx);
         }
         
-        /* Allocate and initialize the memory to store Input Bits */
-        tab_input_bit = (uint8_t *) malloc(MAX_READ_BITS * sizeof(uint8_t));
-        memset(tab_input_bit, 0, MAX_READ_BITS * sizeof(uint8_t));
-        
         /* Allocate and initialize the memory to store Read Output Bits */
         tab_bit = (uint8_t *) malloc(MAX_READ_BITS * sizeof(uint8_t));
         memset(tab_bit, 0, MAX_READ_BITS * sizeof(uint8_t));
         
+        /* Allocate and initialize the memory to store Input Bits */
+        tab_input_bit = (uint8_t *) malloc(MAX_READ_BITS * sizeof(uint8_t));
+        memset(tab_input_bit, 0, MAX_READ_BITS * sizeof(uint8_t));
 }
 
 int dmReadBit(int index)
