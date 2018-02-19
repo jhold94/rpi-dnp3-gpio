@@ -45,5 +45,10 @@ int dmReadBits(int index)
         
         return tab_bits[index];
 }
-        
+
+void modbus_exit(void)
+{
+        modbus_close(ctx);
+        modebus_free(ctx);
+}
         
