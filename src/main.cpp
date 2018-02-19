@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
 			{
 				anValue = analogRead(pin);
 			} else {
-				anValue = dmReadInReg(pin);
+				//anValue = dmReadInReg(pin);
 			}
 			builder.Update(Analog(anValue, 0x01, time), index);
 			++index;
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
 			{
 				outValue = digitalRead(pin);
 			} else {
-				outValue = dmReadOutBit(pin);
+				//outValue = dmReadOutBit(pin);
 			}
 			builder.Update(BinaryOutputStatus(outValue, 0x01, time), index);
 			++index;
@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
 	}
 	
 	/* More modbus stuff */
-	modbusExit();
+	modbus_exit();
 }
 
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value)
