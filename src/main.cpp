@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 			std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
 		} else if ((pin > 9 && pin < 100)) {
 			//std::cout << "modbus thingy" << std::endl;
-			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as aa Digital INPUT" << std::endl;
+			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as a Digital INPUT" << std::endl;
 		} else {
 			pinMode(pin, 0);
 			std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
