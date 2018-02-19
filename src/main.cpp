@@ -49,12 +49,15 @@ int main(int argc, char *argv[])
 		if (pin > 205 && pin < 210)
 		{
 			pinMode(pin, 1);
+			std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
 		} else if ((pin > 9 && pin < 100)) {
-			std::cout << "modbus thingy" << std::endl;
+			//std::cout << "modbus thingy" << std::endl;
+			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as aa Digital INPUT" << std::endl;
 		} else {
 			pinMode(pin, 0);
+			std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
 		}
-		std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
+		//std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
 	}
 	
 	analog_init();
@@ -70,13 +73,14 @@ int main(int argc, char *argv[])
 	}
 
 	for(int pin : config.outputs) {
-		if (pin < 1000) 
+		if (pin > 100) 
 		{
 			pinMode(pin, 1);
+			std::cout << "pin " << static_cast<int>(pin) << " set as OUTPUT" << std::endl;
 		} else {
-			continue;
+			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as a Digital OUTPUT" << std::endl;
 		}
-		std::cout << "pin " << static_cast<int>(pin) << " set as OUTPUT" << std::endl;
+		//std::cout << "pin " << static_cast<int>(pin) << " set as OUTPUT" << std::endl;
 	}
 	
 	/*for(int pin : config.anoutputs) {
@@ -156,11 +160,11 @@ int main(int argc, char *argv[])
 		index = 0;
 		for(int pin : config.outputs) {
 			bool outValue;
-			if (pin < 1000)
+			if (pin > 100)
 			{
 				outValue = digitalRead(pin);
 			} else {
-				//outValue = dmReadOutBit(pin);
+				outValue = dmReadOutBit(pin);
 			}
 			builder.Update(BinaryOutputStatus(outValue, 0x01, time), index);
 			++index;
