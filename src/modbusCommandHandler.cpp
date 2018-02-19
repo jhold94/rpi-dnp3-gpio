@@ -1,6 +1,7 @@
 #include <modbus/modbus.h>
 #include <modbus/modbus-tcp.h>
 #include <stdint.h>
+#include <cstring>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
