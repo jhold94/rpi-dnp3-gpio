@@ -41,11 +41,11 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
 
     if(ret == CommandStatus::SUCCESS)
     {
-        if (gpio < 1000) 
+        if (gpio > 100) 
         {
             digitalWrite(gpio, state);
         } else {
-           // dmWriteBit((gpio - 1000), state);
+            dmWriteBit(gpio, state);
         }
     }
 
