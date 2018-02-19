@@ -61,6 +61,15 @@ int dmReadOutBit(int index)
         return tab_bit[index];        
 }
 
+void dmWriteBit(int index, int state)
+{
+        index = index - 20;
+        
+        //tab_bit[index] = state;
+        
+        modbus_write_bit(ctx, index, state); //tab_bit);
+}
+
 void modbus_exit(void)
 {
         modbus_close(ctx);
