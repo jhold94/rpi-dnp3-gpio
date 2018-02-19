@@ -46,12 +46,12 @@ int dmReadBits(int index)
         nb_points = MAX_READ_BITS;
         rc = modbus_read_bits(ctx, 0, nb_points, tab_bit);
         
-        return tab_bits[index];
+        return tab_bit[index];
 }
 
 void modbus_exit(void)
 {
         modbus_close(ctx);
-        modebus_free(ctx);
+        modbus_free(ctx);
 }
         
