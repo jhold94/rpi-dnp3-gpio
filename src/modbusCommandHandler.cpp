@@ -36,7 +36,7 @@ void modbus_init(void)
         memset(tab_bit, 0, MAX_READ_BITS * sizeof(uint8_t));
 }
 
-int dmReadBits(int index)
+int dmReadBit(int index)
 {
         index = index - 10;
         
