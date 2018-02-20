@@ -65,7 +65,7 @@ int dmReadOutBit(int index)
         return tab_bit[index];        
 }
 
-void dmWriteBit(int index, int state)
+void dmWriteBit(int index, bool state)
 {
         index = index - 20;
         
