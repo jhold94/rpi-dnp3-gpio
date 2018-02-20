@@ -12,12 +12,14 @@
 #include "sources/modbusCommands.h"
 
 #define MAX_READ_BITS 10
+#define MAX_READ_REGISTERS 100
 
 uint8_t *tab_bit;
 uint8_t *tab_input_bit;
 uint16_t *tab_reg;
 modbus_t *ctx;
 int nb_points;
+int nb_points_reg
 
 
 
@@ -39,6 +41,9 @@ void modbus_init(void)
         /* Allocate and initialize the memory to store Input Bits */
         tab_input_bit = (uint8_t *) malloc(MAX_READ_BITS * sizeof(uint8_t));
         memset(tab_input_bit, 0, MAX_READ_BITS * sizeof(uint8_t));
+        
+        tab_reg = (uint16_t *) malloc(MAX_READ_REGISTERS * sizeof(uint16_t));
+        memset(tab_reg, 0, MAX_READ_REGISTERS * sizeof(uint16_t));
 }
 
 int dmReadBit(int index)
@@ -87,6 +92,16 @@ void dmWriteBit(int index, bool state)
         } else {
                 std::cout << "State Error in modbusCommandHandler.cpp" << std::endl;
         }
+}
+
+int dmReadReg(int index)
+{
+        index = (index * 10) + 3;
+        nb_points_reg = MAX_READ_REGISTERS;
+        
+        modbus_read_input_registers(ctx, 0, nb_points_reg, tab_reg);
+        
+        return tab_reg[index];        
 }
 
 void modbus_exit(void)
