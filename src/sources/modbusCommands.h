@@ -7,7 +7,7 @@ extern "C" {
   extern    void dmWriteBit(int index, bool state);
   extern    int dmReadBit(int index);
   extern    int dmReadOutBit(int index);
-  extern    int dmReadInReg(int index);
+  extern    int dmReadReg(int index);
   extern    void modbus_exit(void);
   
 #ifdef __cplusplus
