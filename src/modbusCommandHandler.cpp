@@ -75,12 +75,12 @@ void dmWriteBit(int index, bool state)
         //int true = 1;
         //int false = 0;
         index = index - 20;
-        /*
+        
         tab_bit[index] = state;
         
         modbus_write_bit(ctx, index, tab_bit[index]);
-        */
         
+        /*
         if (state == TRUE)
         {
                 tab_bit[index] = 1;
@@ -88,7 +88,7 @@ void dmWriteBit(int index, bool state)
         } else {
                 tab_bit[index] = 0;
                 modbus_write_bit(ctx, index, OFF);
-        }
+        }*/
 }
 
 int dmReadReg(int index)
