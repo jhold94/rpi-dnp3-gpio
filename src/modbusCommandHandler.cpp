@@ -84,7 +84,9 @@ void dmWriteBit(int index, bool state)
         {
                 tab_bit[index] = 0;
                 modbus_write_bit(ctx, index, false);
-        } else {}
+        } else {
+                std::cout << "State Error in modbusCommandHandler.cpp" << std::endl;
+        }
 }
 
 void modbus_exit(void)
