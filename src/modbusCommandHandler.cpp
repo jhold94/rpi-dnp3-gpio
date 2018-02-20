@@ -12,7 +12,7 @@
 #include "sources/modbusCommands.h"
 
 #define MAX_READ_BITS 10
-#define MAX_READ_REGISTERS 80
+#define MAX_READ_REGISTERS 4000
 
 uint8_t *tab_bit;
 uint8_t *tab_input_bit;
@@ -93,10 +93,10 @@ void dmWriteBit(int index, bool state)
 
 int dmReadReg(int index)
 {
-        index = ((index - 30) * 10) + 3;
+        index = ((index - 30) * 10) + 3003;
         
         nb_points_reg = MAX_READ_REGISTERS;
-        modbus_read_input_registers(ctx, 3000, nb_points_reg, tab_reg);
+        modbus_read_input_registers(ctx, 0, nb_points_reg, tab_reg);
         
         return tab_reg[index];        
 }
