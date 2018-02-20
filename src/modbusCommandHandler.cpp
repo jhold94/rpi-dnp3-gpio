@@ -81,14 +81,14 @@ void dmWriteBit(int index, bool state)
         modbus_write_bit(ctx, index, tab_bit[index]);
         */
         
-        if (state == true)
+        if (state == TRUE)
         {
                // tab_bit[index] = 1;
-                modbus_write_bit(ctx, index, true);
-        } else if (state == false)
+                modbus_write_bit(ctx, index, TRUE);
+        } else if (state == FALSE)
         {
                // tab_bit[index] = 0;
-                modbus_write_bit(ctx, index, false);
+                modbus_write_bit(ctx, index, FALSE);
         } else {
                 std::cout << "State Error in modbusCommandHandler.cpp" << std::endl;
         }
