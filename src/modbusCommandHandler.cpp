@@ -19,7 +19,7 @@ uint8_t *tab_input_bit;
 uint16_t *tab_reg;
 modbus_t *ctx;
 int nb_points;
-int nb_points_reg
+int nb_points_reg;
 
 
 
