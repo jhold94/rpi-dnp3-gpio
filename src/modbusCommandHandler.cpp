@@ -96,9 +96,9 @@ void dmWriteBit(int index, bool state)
 
 int dmReadReg(int index)
 {
-        index = (index * 10) + 3;
-        nb_points_reg = MAX_READ_REGISTERS;
+        index = ((index - 30) * 10) + 3;
         
+        nb_points_reg = MAX_READ_REGISTERS;
         modbus_read_input_registers(ctx, 0, nb_points_reg, tab_reg);
         
         return tab_reg[index];        
