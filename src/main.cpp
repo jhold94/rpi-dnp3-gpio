@@ -66,10 +66,11 @@ int main(int argc, char *argv[])
 		if (pin < 5) 
 		{
 			analogPinMode(pin);
+			std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
 		} else {
-			continue;
+			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as an Analog INPUT" << std::endl;
 		}
-		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
+		//std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
 	}
 
 	for(int pin : config.outputs) {
@@ -151,7 +152,7 @@ int main(int argc, char *argv[])
 			{
 				anValue = analogRead(pin);
 			} else {
-				//anValue = dmReadInReg(pin);
+				anValue = dmReadReg(pin);
 			}
 			builder.Update(Analog(anValue, 0x01, time), index);
 			++index;
