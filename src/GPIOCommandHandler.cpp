@@ -16,7 +16,7 @@ GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint16_t> gpiopins)
 
 CommandStatus GPIOCommandHandler::Select(const ControlRelayOutputBlock& command, uint16_t index)
 {
-    uint8_t gpio = 0;
+    uint16_t gpio = 0;
     bool state = false;
 
     return GetPinAndState(index, command.functionCode, gpio, state);
@@ -24,7 +24,7 @@ CommandStatus GPIOCommandHandler::Select(const ControlRelayOutputBlock& command,
 
 CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command, uint16_t index, OperateType opType)
 {
-    uint8_t gpio = 0;
+    uint16_t gpio = 0;
     bool state = false;
 
     auto ret = GetPinAndState(index, command.functionCode, gpio, state);
@@ -70,7 +70,7 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
     return ret;
 }
 */
-CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::ControlCode code, uint8_t& gpio, bool& state)
+CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::ControlCode code, uint16_t& gpio, bool& state)
 {
     switch(code)
     {
