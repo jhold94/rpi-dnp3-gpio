@@ -18,7 +18,7 @@ bool Config::AddOutput(uint8_t gpiopin)
 
 bool Config::AddAnoutput(uint8_t gpiopin)
 {
-    return Add(analogpin, anoutputs);
+    return Add(gpiopin, anoutputs);
 }
 
 bool Config::Add(uint8_t gpiopin, assignvec0& vec0)
