@@ -12,8 +12,6 @@ class GPIOCommandHandler final : public opendnp3::ICommandHandler
 public:
     GPIOCommandHandler(const std::vector<uint16_t> gpiopins);
     
-    //GPIOCommandHandler(const std::vector<uint8_t> analogpins);
-
     void Start() override {}
     void End() override {}
 
@@ -47,11 +45,11 @@ public:
 
 private:
 
-    opendnp3::CommandStatus GetPinAndState(uint16_t index, opendnp3::ControlCode code, uint8_t& gpio, bool& state);
+    opendnp3::CommandStatus GetPinAndState(uint16_t index, opendnp3::ControlCode code, uint16_t& gpio, bool& state);
 
     std::map<uint16_t, uint8_t> dnp2gpio;
     
-    opendnp3::CommandStatus GetPinAndValue(uint16_t index, opendnp3::ControlCode code, uint8_t& analogpin, uint16_t& value);
+    opendnp3::CommandStatus GetPinAndValue(uint16_t index, opendnp3::ControlCode code, uint16_t& analogpin, uint16_t& value);
     
     std::map<uint16_t, uint8_t> dnp2analogpin;
 };
