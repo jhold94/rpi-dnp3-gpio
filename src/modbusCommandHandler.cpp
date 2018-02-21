@@ -91,7 +91,7 @@ void dmWriteBit(int index, bool state)
         }*/
 }
 
-int dmReadReg(int index)
+long dmReadReg(int index)
 {
         index = ((index - 30000) * 10);
         
