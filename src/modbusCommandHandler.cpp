@@ -50,7 +50,7 @@ int dmReadBit(int index)
 {
         //int rc;
         
-        index = index - 10;
+        index = index - 10000;
         
         nb_points = MAX_READ_BITS;
         modbus_read_input_bits(ctx, 0, nb_points, tab_input_bit);
@@ -62,7 +62,7 @@ int dmReadOutBit(int index)
 {
         //int rc;
         
-        index = index - 20;
+        index = index - 1000;
         
         nb_points = MAX_READ_BITS;
         modbus_read_bits(ctx, 0, nb_points, tab_bit);
@@ -74,7 +74,7 @@ void dmWriteBit(int index, bool state)
 {
         //int true = 1;
         //int false = 0;
-        index = index - 20;
+        index = index - 1000;
         
         tab_bit[index] = state;
         
@@ -93,7 +93,7 @@ void dmWriteBit(int index, bool state)
 
 int dmReadReg(int index)
 {
-        index = ((index - 30) * 10);
+        index = ((index - 30000) * 10);
         
         nb_points_reg = MAX_READ_REGISTERS;
         modbus_read_input_registers(ctx, 3003, nb_points_reg, tab_reg);
