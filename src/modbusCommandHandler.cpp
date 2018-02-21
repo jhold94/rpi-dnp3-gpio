@@ -100,7 +100,7 @@ int dmReadReg(int index)
         
         if(index = 0)
         {
-                std:cout << "coming from dmReadReg()" << std:endl
+                std::cout << "coming from dmReadReg()" << std::endl
         }
         
         return 10000; //tab_reg[index];        
