@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 	analog_init();
 	
 	for(int pin : config.aninputs) {
-		if (pin < 5) 
+		if (pin < 30000) 
 		{
 			analogPinMode(pin);
 			std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
 		index = 0;
 		for(int pin : config.aninputs) {
 			int anValue;
-			if (pin < 5) 
+			if (pin < 30000) 
 			{
 				anValue = analogRead(pin);
 			} else {
@@ -184,17 +184,17 @@ bool safe_handler(Config& config, const std::string& section, const std::string&
 {
 	try
 	{		
-		if(section == "input")
+		if(section == "output")
+		{
+			return config.AddOutput(std::stoul(name));
+		}
+		else if(section == "input")
 		{
 			return config.AddInput(std::stoul(name));
 		}
 		else if(section == "aninput")
 		{
 			return config.AddAninput(std::stoul(name));
-		}
-		else if(section == "output")
-		{
-			return config.AddOutput(std::stoul(name));
 		}
 		else if(section == "program")
 		{
