@@ -45,19 +45,27 @@ int main(int argc, char *argv[])
 	}
 	
 	// setup inputs and outputs
+	for(int pin : config.outputs) {
+		if (pin < 1000) 
+		{
+			pinMode(pin, 1);
+			std::cout << "pin " << static_cast<int>(pin) << " set as OUTPUT" << std::endl;
+		} else {
+			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as a Digital OUTPUT" << std::endl;
+		}
+	}
+	
 	for(int pin : config.inputs) {
 		if (pin > 205 && pin < 210)
 		{
 			pinMode(pin, 1);
 			std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
-		} else if ((pin > 9 && pin < 100)) {
-			//std::cout << "modbus thingy" << std::endl;
+		} else if ((pin > 9999)) {
 			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as a Digital INPUT" << std::endl;
 		} else {
 			pinMode(pin, 0);
 			std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
 		}
-		//std::cout << "pin " << static_cast<int>(pin) << " set as INPUT" << std::endl;
 	}
 	
 	analog_init();
@@ -70,27 +78,14 @@ int main(int argc, char *argv[])
 		} else {
 			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as an Analog INPUT" << std::endl;
 		}
-		//std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
 	}
 
-	for(int pin : config.outputs) {
-		if (pin > 100) 
-		{
-			pinMode(pin, 1);
-			std::cout << "pin " << static_cast<int>(pin) << " set as OUTPUT" << std::endl;
-		} else {
-			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as a Digital OUTPUT" << std::endl;
-		}
-		//std::cout << "pin " << static_cast<int>(pin) << " set as OUTPUT" << std::endl;
-	}
-	
 	/*for(int pin : config.anoutputs) {
 		
 		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG OUTPUT" << std::endl;
 	}*/
 
 	const auto commandHandler = std::make_shared<GPIOCommandHandler>(config.outputs);
-	//const auto commandHandler = std::make_shared<GPIOCommandHandler>(config.anoutputs);
 
 	const auto LOG_LEVELS = levels::NORMAL | levels::ALL_APP_COMMS;
 
@@ -138,7 +133,7 @@ int main(int argc, char *argv[])
 		uint16_t index = 0;
 		for(int pin : config.inputs) {
 			bool value;
-			if (pin > 100)
+			if (pin < 10000)
 			{
 				value = digitalRead(pin);
 			} else {
@@ -164,7 +159,7 @@ int main(int argc, char *argv[])
 		index = 0;
 		for(int pin : config.outputs) {
 			bool outValue;
-			if (pin > 100)
+			if (pin < 1000)
 			{
 				outValue = digitalRead(pin);
 			} else {
