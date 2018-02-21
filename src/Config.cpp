@@ -16,7 +16,7 @@ bool Config::AddOutput(uint8_t gpiopin)
     return Add(gpiopin, outputs);
 }
 
-bool Config::AddAnoutput(uint8_t analogpin)
+bool Config::AddAnoutput(uint8_t gpiopin)
 {
     return Add(analogpin, anoutputs);
 }
@@ -34,19 +34,4 @@ bool Config::Add(uint8_t gpiopin, assignvec0& vec0)
 
     return true;
 }
-
-bool Config::Add1(uint8_t analogpin, assignvec1& vec1)
-{
-    // first check if the pin is assigned
-    if(assigned.find(analogpin) != assigned.end())
-    {
-        return false;
-    }
-    
-    vec1.push_back(analogpin);
-    assigned.insert(analogpin);
-    
-    return true;
-}
-
 
