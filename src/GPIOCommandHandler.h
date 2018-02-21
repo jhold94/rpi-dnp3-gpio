@@ -10,7 +10,7 @@ class GPIOCommandHandler final : public opendnp3::ICommandHandler
 {
 
 public:
-    GPIOCommandHandler(const std::vector<uint8_t> gpiopins);
+    GPIOCommandHandler(const std::vector<uint16_t> gpiopins);
     
     //GPIOCommandHandler(const std::vector<uint8_t> analogpins);
 
