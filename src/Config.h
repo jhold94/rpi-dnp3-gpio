@@ -35,8 +35,7 @@ public:
 private:
 
     bool Add(uint8_t gpiopin, assignvec0& vec0);
-    //bool Add1(uint8_t analogpin, assignvec1& vec1);
-
+    
     std::set<uint8_t> assigned;
 };
 
