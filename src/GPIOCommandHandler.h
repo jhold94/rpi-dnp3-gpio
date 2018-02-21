@@ -47,11 +47,11 @@ private:
 
     opendnp3::CommandStatus GetPinAndState(uint16_t index, opendnp3::ControlCode code, uint16_t& gpio, bool& state);
 
-    std::map<uint16_t, uint8_t> dnp2gpio;
+    std::map<uint16_t, uint16_t> dnp2gpio;
     
     opendnp3::CommandStatus GetPinAndValue(uint16_t index, opendnp3::ControlCode code, uint16_t& analogpin, uint16_t& value);
     
-    std::map<uint16_t, uint8_t> dnp2analogpin;
+    std::map<uint16_t, uint16_t> dnp2analogpin;
 };
 
 #endif //TS_DNP3_GPIOCOMMANDHANDLER_H
