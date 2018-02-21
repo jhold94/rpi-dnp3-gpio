@@ -17,10 +17,10 @@ public:
     Config() : link(false, false), sample_period_ms(100), deadband(50)
     {}
 
-    bool AddInput(uint8_t gpiopin);
-    bool AddAninput(uint8_t gpiopin);
-    bool AddOutput(uint8_t gpiopin);
-    bool AddAnoutput(uint8_t gpiopin);
+    bool AddInput(uint16_t gpiopin);
+    bool AddAninput(uint16_t gpiopin);
+    bool AddOutput(uint16_t gpiopin);
+    bool AddAnoutput(uint16_t gpiopin);
 
     std::vector<uint16_t> inputs;
     std::vector<uint16_t> aninputs;
@@ -34,7 +34,7 @@ public:
 
 private:
 
-    bool Add(uint8_t gpiopin, assignvec0& vec0);
+    bool Add(uint16_t gpiopin, assignvec0& vec0);
     
     std::set<uint8_t> assigned;
 };
