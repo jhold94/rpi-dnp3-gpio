@@ -98,7 +98,12 @@ int dmReadReg(int index)
         nb_points_reg = MAX_READ_REGISTERS;
         modbus_read_input_registers(ctx, 3002, nb_points_reg, tab_reg);
         
-        return tab_reg[index];        
+        if(index = 0)
+        {
+                std:cout << "coming from dmReadReg()" << std:endl
+        }
+        
+        return 10000; //tab_reg[index];        
 }
 
 void modbus_exit(void)
