@@ -96,7 +96,7 @@ int dmReadReg(int index)
         index = ((index - 30000) * 10);
         
         nb_points_reg = MAX_READ_REGISTERS;
-        modbus_read_input_registers(ctx, 3003, nb_points_reg, tab_reg);
+        modbus_read_input_registers(ctx, 3002, nb_points_reg, tab_reg);
         
         return tab_reg[index];        
 }
