@@ -186,15 +186,15 @@ bool safe_handler(Config& config, const std::string& section, const std::string&
 	{		
 		if(section == "input")
 		{
-			return config.AddInput(std::stol(name));
+			return config.AddInput(std::stoul(name));
 		}
 		else if(section == "aninput")
 		{
-			return config.AddAninput(std::stol(name));
+			return config.AddAninput(std::stoul(name));
 		}
 		else if(section == "output")
 		{
-			return config.AddOutput(std::stol(name));
+			return config.AddOutput(std::stoul(name));
 		}
 		else if(section == "program")
 		{
