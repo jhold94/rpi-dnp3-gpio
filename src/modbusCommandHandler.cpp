@@ -105,7 +105,7 @@ void dmWriteReg(int index, long value)
         
         //tab_reg[index] = value;
         
-        modbus_write_registers(ctx, index, value); //tab_reg[index]);       
+        modbus_write_register(ctx, index, value); //tab_reg[index]);       
 }
 
 void modbus_exit(void)
