@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 {
 	if(argc != 2)
 	{
-		std::cerr << "usage: rpi-dnp3-gpio <ini file path>" << std::endl;
+		std::cerr << "usage: ts-dnp3 <ini file path>" << std::endl;
 		return -1;
 	}
 
@@ -79,11 +79,6 @@ int main(int argc, char *argv[])
 			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as an Analog INPUT" << std::endl;
 		}
 	}
-
-	/*for(int pin : config.anoutputs) {
-		
-		std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG OUTPUT" << std::endl;
-	}*/
 
 	const auto commandHandler = std::make_shared<GPIOCommandHandler>(config.outputs);
 
