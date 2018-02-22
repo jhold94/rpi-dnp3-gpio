@@ -80,9 +80,9 @@ void analogWrite(int pin, int value)
 {
 	int twifd = fpga_init(NULL, 0);
 	
-	int value = value * 360;
+	value = value * 360;
 	
-	int opt_dac = (value & 0xfff)<<1)|0x1;
+	int opt_dac = ((value & 0xfff)<<1)|0x1;
 	
 	char buf[2];
 	buf[0] = ((opt_dac >> 9) & 0xf);
