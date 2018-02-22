@@ -54,19 +54,26 @@ void analog_init(void)
 
 int analogRead(int pin)
 {	
-	unsigned long long chan[4] = {0,0,0,0};
+	int value;
+	if (pin > 4)
+	{
+		long long chan[4] = {0,0,0,0};
 	
-	for(x = 0; x < 20; x++) {
-		mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
-		mxlradcregs[0x4/4] = 0x7f; //Schedule conversaion of chan 6:0
-		while(!((mxlradcregs[0x10/4] & 0x7f) == 0x7f)); //Wait
-		chan[pin] += (mxlradcregs[(0x50+(pin * 0x10))/4] & 0xffff);
+		for(x = 0; x < 20; x++) {
+			mxlradcregs[0x18/4] = 0x7f; //Clear interrupt ready
+			mxlradcregs[0x4/4] = 0x7f; //Schedule conversaion of chan 6:0
+			while(!((mxlradcregs[0x10/4] & 0x7f) == 0x7f)); //Wait
+			chan[pin] += (mxlradcregs[(0x50+(pin * 0x10))/4] & 0xffff);
+		}
+	
+        	int meas_mV=((((chan[pin]/20)*45177)*6235)/100000000);
+		int meas_uA=(((meas_mV)*1000)/240);
+	
+		value = meas_uA;
+	} else {
+		value = 100;
 	}
-	
-        int meas_mV=((((chan[pin]/20)*45177)*6235)/100000000);
-	int meas_uA=(((meas_mV)*1000)/240);
-	
-	return meas_uA;		
+	return value;
 }
 
 void analogWrite(int pin, int value)
