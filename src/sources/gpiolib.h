@@ -15,6 +15,7 @@ extern "C" {
   extern    int analogRead(int pin);
   extern    void analog_init(void);
   extern    int fpga_init(char *path, char adr);
+  extern    void fpoke8(int twifd, uint16_t addr, uint8_t value);
   extern    uint8_t fpeek8(int twifd, uint16_t addr);
   extern    int bitRead(int value, char bit);
   extern    int specialDigitalRead(int pin);
