@@ -47,7 +47,7 @@ private:
 
     std::map<uint16_t, uint16_t> dnp2gpio;
     
-    opendnp3::CommandStatus GetPinAndValue(uint16_t index, opendnp3::ControlCode code, uint16_t& gpio, uint16_t& value);
+    opendnp3::CommandStatus GetPinAndValue(uint16_t index, uint16_t& gpio, uint16_t& value);
     
 };
 
