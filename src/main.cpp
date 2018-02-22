@@ -79,6 +79,14 @@ int main(int argc, char *argv[])
 			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as an Analog INPUT" << std::endl;
 		}
 	}
+	
+	for(int pin : config.anoutputs) {
+		if (pin < 40000)
+		{
+			std::cout << "pin " << static_cast<int>(pin) << " set as ANALOG INPUT" << std::endl;
+		} else {
+			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as an Analog INPUT" << std::endl;
+		}
 
 	const auto commandHandler = std::make_shared<GPIOCommandHandler>(config.outputs);
 
@@ -98,13 +106,13 @@ int main(int argc, char *argv[])
 			config.aninputs.size(), //analog
 			0, 0,
 			config.outputs.size(), // binary output status
-			0, //config.anoutputs.size(), //analog output status
+			config.anoutputs.size(), //analog output status
 			0
 		) /* cpp/libs/include/opendnp3/outstation/DatabaseSizes.h */
 	);
 	stack.link = config.link;
 
-	stack.outstation.eventBufferConfig = EventBufferConfig(50,0,150,0,0,50,0,0);
+	stack.outstation.eventBufferConfig = EventBufferConfig(50,0,150,0,0,50,150,0);
 	stack.outstation.params.allowUnsolicited = true;
 	stack.dbConfig.analog[0].deadband = config.deadband;
 	
@@ -168,6 +176,19 @@ int main(int argc, char *argv[])
 			builder.Update(BinaryOutputStatus(outValue, 0x01, time), index);
 			++index;
 		}
+		
+		index = 0;
+		for(int pin : config.anoutputs) {
+			int anOutValue;
+			if (pin < 40000)
+			{
+				anOutvalue = analogRead(pin);
+			} else {
+				anOutValue = dmReadHoldReg(pin);
+			}
+			builder.Update(AnalogOutputStatus(anOutValue, 0x01, time), index);
+			++index;
+		}
 
 		outstation->Apply(builder.Build());
 
@@ -198,7 +219,7 @@ bool safe_handler(Config& config, const std::string& section, const std::string&
 		}
 		else if(section == "anoutput")
 		{
-			return config.AddAnoutput(std::sroul(name));
+			return config.AddAnoutput(std::stoul(name));
 		}
 		else if(section == "program")
 		{
