@@ -87,6 +87,7 @@ int main(int argc, char *argv[])
 		} else {
 			std::cout << "pin " << static_cast<int>(pin) << " read from Modbus Device as an Analog INPUT" << std::endl;
 		}
+	}
 
 	const auto commandHandler = std::make_shared<GPIOCommandHandler>(config.outputs);
 
@@ -182,7 +183,7 @@ int main(int argc, char *argv[])
 			int anOutValue;
 			if (pin < 40000)
 			{
-				anOutvalue = analogRead(pin);
+				anOutValue = analogRead(pin);
 			} else {
 				anOutValue = dmReadHoldReg(pin);
 			}
