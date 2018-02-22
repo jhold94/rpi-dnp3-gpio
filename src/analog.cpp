@@ -69,7 +69,7 @@ int analogRead(int pin)
 	return meas_uA;		
 }
 
-/* void analogWrite(int pin, int value)
+void analogWrite(int pin, int value)
 {
 	int twifd = fpga_init(NULL, 0);
 	
@@ -106,4 +106,4 @@ int analogRead(int pin)
 	fpoke(twifd, (0x2E + (2*pin)), buf[0]);
 	fpoke(twifd, (0x2F + (2*pin)), buf[1]);
 			
-} */
+}
