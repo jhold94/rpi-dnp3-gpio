@@ -149,6 +149,17 @@ int fpga_init(char *path, char adr)
 	return fd;
 }
 
+void fpoke8(int twifd, uint16_t addr, uint8_t value)
+{
+	uint8_t data[3];
+	data[0] = ((addr >> 8) & 0xff);
+	data[1] = (addr & 0xff);
+	data[2] = value;
+	if (write(twifd, data, 3) != 3) {
+		perror("I2C Write Failed");
+	}
+}
+
 uint8_t fpeek8(int twifd, uint16_t addr)
 {
 	uint8_t data[2];
