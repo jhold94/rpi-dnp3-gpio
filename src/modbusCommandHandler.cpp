@@ -77,13 +77,11 @@ void dmWriteBit(int index, bool state)
 
 long dmReadReg(int index)
 {
-        index = ((index - 30000) * 10) + 3;
+        index = index - 30000;
         
         nb_points_reg = MAX_READ_REGISTERS;
-        modbus_read_registers(ctx, 2999, nb_points_reg, tab_reg);
-        
-        std::cout << "tab_reg[" << index << "] = " << tab_reg[index] << std::endl;
-        
+        modbus_read_registers(ctx, 0, nb_points_reg, tab_reg);
+                
         return tab_reg[index];        
 }
 
