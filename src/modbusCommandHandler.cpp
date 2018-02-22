@@ -48,8 +48,6 @@ void modbus_init(void)
 
 int dmReadBit(int index)
 {
-        //int rc;
-        
         index = index - 10000;
         
         nb_points = MAX_READ_BITS;
@@ -59,9 +57,7 @@ int dmReadBit(int index)
 }
 
 int dmReadOutBit(int index)
-{
-        //int rc;
-        
+{        
         index = index - 1000;
         
         nb_points = MAX_READ_BITS;
@@ -72,23 +68,11 @@ int dmReadOutBit(int index)
 
 void dmWriteBit(int index, bool state)
 {
-        //int true = 1;
-        //int false = 0;
         index = index - 1000;
         
         tab_bit[index] = state;
         
         modbus_write_bit(ctx, index, tab_bit[index]);
-        
-        /*
-        if (state == TRUE)
-        {
-                tab_bit[index] = 1;
-                modbus_write_bit(ctx, index, ON);
-        } else {
-                tab_bit[index] = 0;
-                modbus_write_bit(ctx, index, OFF);
-        }*/
 }
 
 long dmReadReg(int index)
@@ -97,6 +81,8 @@ long dmReadReg(int index)
         
         nb_points_reg = MAX_READ_REGISTERS;
         modbus_read_input_registers(ctx, 3002, nb_points_reg, tab_reg);
+        
+        std::cout << "tab_reg[" << index << "] = " << tab_reg[index] << std::endl;
         
         return tab_reg[index];        
 }
