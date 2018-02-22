@@ -47,7 +47,7 @@ CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint1
     uint8_t gpio = 0;
     uint16_t value = 0;
     
-    return GetPinAndValue(index, command.functionCode, gpio, value);
+    return GetPinAndValue(index, gpio, value);
 }
 
  CommandStatus GPIOCommandHandler::Operate(const AnalogOutputInt16& command, uint16_t index, OperateType opType)
