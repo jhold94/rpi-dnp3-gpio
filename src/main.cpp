@@ -108,6 +108,8 @@ int main(int argc, char *argv[])
 	stack.outstation.params.allowUnsolicited = true;
 	stack.dbConfig.analog[0].deadband = config.deadband;
 	stack.dbConfig.analog[1].deadband = config.deadband;
+	
+	stack.dbConfig.analog[2].evariation = EventAnalogVariation::Group32Var3;
 	stack.dbConfig.analog[2].deadband = config.deadband;
 	stack.dbConfig.analog[3].deadband = config.deadband;
 	stack.dbConfig.analog[4].deadband = config.deadband;
