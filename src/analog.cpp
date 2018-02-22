@@ -110,7 +110,7 @@ void analogWrite(int pin, int value)
 			break;
 	}
 	
-	fpoke(twifd, (0x2E + (2*pin)), buf[0]);
-	fpoke(twifd, (0x2F + (2*pin)), buf[1]);
+	fpoke8(twifd, (0x2E + (2*pin)), buf[0]);
+	fpoke8(twifd, (0x2F + (2*pin)), buf[1]);
 			
 }
