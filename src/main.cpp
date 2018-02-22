@@ -191,6 +191,10 @@ bool safe_handler(Config& config, const std::string& section, const std::string&
 		{
 			return config.AddAninput(std::stoul(name));
 		}
+		else if(section == "anoutput")
+		{
+			return config.AddAnoutput(std::sroul(name));
+		}
 		else if(section == "program")
 		{
 			if(name == "sample-period-ms")
