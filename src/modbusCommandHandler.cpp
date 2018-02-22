@@ -86,7 +86,7 @@ long dmReadReg(int index)
         nb_points_reg = MAX_READ_REGISTERS;
         modbus_read_input_registers(ctx, 0, nb_points_reg, tab_input_reg);
                 
-        return tab_reg[index];        
+        return tab_input_reg[index];        
 }
 
 long dmReadHoldReg(int index)
@@ -95,6 +95,8 @@ long dmReadHoldReg(int index)
         
         nb_points_reg = MAX_READ_REGISTERS;
         modbus_read_registers(ctx, 0, nb_points_reg, tab_reg);
+        
+        return tab_reg[index];
 }
 
 void dmWriteReg(int index, long value)
