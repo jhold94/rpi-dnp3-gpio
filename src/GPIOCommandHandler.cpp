@@ -42,35 +42,58 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
     return ret;
 }
 
-/*opendnp3::CommandStatus Select(const opendnp3::AnalogOutputInt16& command, uint16_t index)
+CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint16_t index)
 {
-    uint8_t analogpin = 0;
+    uint8_t gpio = 0;
     uint16_t value = 0;
     
-    return GetPinAndValue(index, command.functoinCode, analogpin, value);
+    return GetPinAndValue(index, command.functionCode, gpio, value);
 }
 
- opendnp3::CommandStatus Operate(const opendnp3::AnalogOutputInt16& command, uint16_t index, opendnp3::OperateType opType)
+ CommandStatus GPIOCommandHandler::Operate(const AnalogOutputInt16& command, uint16_t index, OperateType opType)
 {
-    uint8_t analogpin = 0;
+    uint8_t gpio = 0;
     uint16_t value = 0;
     
-    auto ret = GetPinAndValue(index, command.functionCode, analogpin, value);
+    auto ret = GetPinAndValue(index, gpio, value);
     
     if(ret == CommandStatus::SUCCESS)
     {
-        if(gpio < 10)
+        if(gpio < 40000)
         {
-            analogWrite(analogpin, value);
+            analogWrite(gpio, value);
         } else {
-            dmWriteRegs((analogpin  - 10), value);
+            dmWriteRegs(gpio, value);
         }
     }
     
     return ret;
 }
-*/
+
 CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::ControlCode code, uint16_t& gpio, bool& state)
+{
+    switch(code)
+    {
+        case(ControlCode::LATCH_ON):
+            state = true;
+            break;
+        case(ControlCode::LATCH_OFF):
+            state = false;
+            break;
+        default:
+            return CommandStatus::NOT_SUPPORTED;
+    }
+
+    auto iter = dnp2gpio.find(index);
+    if(iter == dnp2gpio.end()) {
+        return CommandStatus::NOT_SUPPORTED;
+    }
+
+    gpio = iter->second;
+    return CommandStatus::SUCCESS;
+}
+
+CommandStatus GPIOCommandHandler::GetPinAndValue(uint16_t index, uint16_t& gpio, uint16_t& value)
 {
     switch(code)
     {
