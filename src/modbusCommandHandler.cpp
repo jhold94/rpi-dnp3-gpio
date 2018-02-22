@@ -27,7 +27,7 @@ int nb_points_reg;
 
 void modbus_init(void)
 {
-        ctx = modbus_new_tcp("192.168.24.24", 2000);
+        ctx = modbus_new_tcp("192.168.1.100", 2000);
         
         modbus_set_slave(ctx, 5);
         
