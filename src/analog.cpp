@@ -73,8 +73,8 @@ int analogRead(int pin)
 	} else {
 		pin = pin - 4;
 		int twifd = fpga_init(NULL, 0);
-		int frontreg = fpoke8(twifd, (0x2E + (2*pin)));
-		int backreg = fpoke8(twifd, (0x2F + (2*pin)));
+		int frontreg = fpeek8(twifd, (0x2E + (2*pin)));
+		int backreg = fpeek8(twifd, (0x2F + (2*pin)));
 		int value;
 	
 		value = (frontreg << 8) | backreg);
