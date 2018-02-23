@@ -11,6 +11,7 @@ class Config
 {
     typedef std::vector<uint16_t> assignvec0;
     
+    typedef std::vector<uint16_t> assignvec1;
    
 public:
 
