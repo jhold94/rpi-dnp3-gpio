@@ -52,7 +52,7 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
 CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint16_t index)
 {
     uint16_t anio = 0;
-    uint16_t value = 0;
+    //uint16_t value = 0;
     
     return GetPinAndValue(index, anio);
 }
@@ -64,7 +64,7 @@ CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint1
     
     auto ret = GetPinAndValue(index, anio);
     
-    value = command.value
+    value = command.value;
      
     if(ret == CommandStatus::SUCCESS)
     {
