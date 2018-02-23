@@ -70,10 +70,12 @@ int analogRead(int pin)
 		int meas_uA=(((meas_mV)*1000)/240);
 	
 		value = meas_uA;
+		
+		return value;
 	} else {
 		value = 100;
+		return value;
 	}
-	return value;
 }
 
 void analogWrite(int pin, int value)
