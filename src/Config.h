@@ -37,6 +37,8 @@ private:
 
     bool Add(uint16_t gpiopin, assignvec0& vec0);
     
+    bool Add(uint16_t aniopin, assignvec1& vec1);
+    
     std::set<uint8_t> assigned;
 };
 
