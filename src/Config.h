@@ -20,7 +20,7 @@ public:
     bool AddInput(uint16_t gpiopin);
     bool AddAninput(uint16_t gpiopin);
     bool AddOutput(uint16_t gpiopin);
-    bool AddAnoutput(uint16_t gpiopin);
+    bool AddAnoutput(uint16_t aniopin);
 
     std::vector<uint16_t> inputs;
     std::vector<uint16_t> aninputs;
