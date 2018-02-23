@@ -18,7 +18,7 @@ bool Config::AddOutput(uint16_t gpiopin)
 
 bool Config::AddAnoutput(uint16_t gpiopin)
 {
-    return Add(gpiopin, anoutputs);
+    return Add(aniopin, anoutputs);
 }
 
 bool Config::Add(uint16_t gpiopin, assignvec0& vec0)
