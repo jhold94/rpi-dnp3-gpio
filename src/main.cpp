@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	const auto commandHandler = std::make_shared<GPIOCommandHandler>(config.outputs);
+	const auto commandHandler = std::make_shared<GPIOCommandHandler>(config.outputs, config.anoutputs);
 
 	const auto LOG_LEVELS = levels::NORMAL | levels::ALL_APP_COMMS;
 
