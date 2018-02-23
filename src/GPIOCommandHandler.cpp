@@ -68,7 +68,7 @@ CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint1
      
     if(ret == CommandStatus::SUCCESS)
     {
-        if(gpio < 40000)
+        if(apio < 40000)
         {
             analogWrite(anio, value);
         } else {
