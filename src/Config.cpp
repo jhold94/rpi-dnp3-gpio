@@ -16,9 +16,9 @@ bool Config::AddOutput(uint16_t gpiopin)
     return Add(gpiopin, outputs);
 }
 
-bool Config::AddAnoutput(uint16_t gpiopin)
+bool Config::AddAnoutput(uint16_t aniopin)
 {
-    return Add(aniopin, anoutputs);
+    return Add1(aniopin, anoutputs);
 }
 
 bool Config::Add(uint16_t gpiopin, assignvec0& vec0)
@@ -43,7 +43,7 @@ bool Config::Add1(uint16_t aniopin, assignvec1& vec1)
         return false;
     }
     
-    vec1.pushback(aniopin);
+    vec1.push_back(aniopin);
     assigned.insert(aniopin);
     
     return true;
