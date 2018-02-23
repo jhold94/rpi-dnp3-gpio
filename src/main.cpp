@@ -113,18 +113,18 @@ int main(int argc, char *argv[])
 	);
 	stack.link = config.link;
 
-	stack.outstation.eventBufferConfig = EventBufferConfig(50,0,150,0,0,50,150,0);
+	stack.outstation.eventBufferConfig = EventBufferConfig(150,0,150,0,0,150,150,0);
 	stack.outstation.params.allowUnsolicited = true;
-	stack.dbConfig.analog[0].deadband = config.deadband;
+	//stack.dbConfig.analog[0].deadband = config.deadband;
 	
-	stack.dbConfig.analog[1].deadband = config.deadband;
+	//stack.dbConfig.analog[1].deadband = config.deadband;
 	
-	stack.dbConfig.analog[2].evariation = EventAnalogVariation::Group32Var3;
-	stack.dbConfig.analog[2].deadband = config.deadband;
+	//stack.dbConfig.analog[2].evariation = EventAnalogVariation::Group32Var3;
+	//stack.dbConfig.analog[2].deadband = config.deadband;
 	
-	stack.dbConfig.analog[3].deadband = config.deadband;
+	//stack.dbConfig.analog[3].deadband = config.deadband;
 	
-	stack.dbConfig.analog[4].deadband = config.deadband;
+	//stack.dbConfig.analog[4].deadband = config.deadband;
 
 	auto outstation = channel->AddOutstation("outstation", commandHandler, DefaultOutstationApplication::Create(), stack);
 
@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
 		// determines the sampling rate
 		std::this_thread::sleep_for(SAMPLE_PERIOD);
 		
-		modbus_reconnect();
+		//modbus_reconnect();
 	}
 	
 	/* More modbus stuff */
