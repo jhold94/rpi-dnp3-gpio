@@ -10,7 +10,7 @@ class GPIOCommandHandler final : public opendnp3::ICommandHandler
 {
 
 public:
-    GPIOCommandHandler(const std::vector<uint16_t> gpiopins);
+    GPIOCommandHandler(const std::vector<uint16_t> gpiopins, const std::vector<uint16_t> aniopins);
     
     void Start() override {}
     void End() override {}
@@ -47,7 +47,9 @@ private:
 
     std::map<uint16_t, uint16_t> dnp2gpio;
     
-    opendnp3::CommandStatus GetPinAndValue(uint16_t index, uint16_t& gpio);
+    opendnp3::CommandStatus GetPinAndValue(uint16_t index, uint16_t& anio);
+    
+    std::map<uint16_t, uint16_t> dnp2anio;
     
 };
 
