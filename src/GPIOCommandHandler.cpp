@@ -94,7 +94,9 @@ CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::Contr
 }
 
 CommandStatus GPIOCommandHandler::GetPinAndValue(uint16_t index, uint16_t& gpio, uint16_t& value)
-{
+{  
+    value = command.value;
+    
     auto iter = dnp2gpio.find(index);
     if(iter == dnp2gpio.end()) {
         return CommandStatus::NOT_SUPPORTED;
