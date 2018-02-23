@@ -70,11 +70,14 @@ int analogRead(int pin)
 		int meas_uA=(((meas_mV)*1000)/240);
 	
 		value = meas_uA;
-		
-		//return value;
 	} else {
-		value = 100;
-		//return value;
+		pin = pin - 4;
+		int twifd = fpga_init(NULL, 0);
+		int frontreg = fpoke8(twifd, (0x2E + (2*pin)));
+		int backreg = fpoke8(twifd, (0x2F + (2*pin)));
+		int value;
+	
+		value = (frontreg << 8) | backreg)
 	}
 	return value;
 }
@@ -92,29 +95,6 @@ void analogWrite(int pin, int value)
 	buf[0] = ((opt_dac >> 9) & 0xf);
 	buf[1] = ((opt_dac >> 1) & 0xff);
 	
-	/*switch(pin)
-	{
-		case 0:
-			fpoke8(twifd, 0x2E, buf[0]);
-			fpoke8(twifd, 0x2F, buf[1]);
-			break;
-		case 1:
-			fpoke8(twifd, 0x30, buf[0]);
-			fpoke8(twifd, 0x31, buf[1]);
-			break;
-		case 2:
-			fpoke8(twifd, 0x32, buf[0]);
-			fpoke8(twifd, 0x33, buf[1]);
-			break;
-		case 3:
-			fpoke8(twifd, 0x34, buf[0]);
-			fpoke8(twifd, 0x35, buf[1]);
-			break;
-		default:
-			break;
-	}*/
-	
 	fpoke8(twifd, (0x2E + (2*pin)), buf[0]);
-	fpoke8(twifd, (0x2F + (2*pin)), buf[1]);
-			
+	fpoke8(twifd, (0x2F + (2*pin)), buf[1]);			
 }
