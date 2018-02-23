@@ -77,7 +77,8 @@ int analogRead(int pin)
 		int backreg = fpeek8(twifd, (0x2F + (2*pin)));
 		int value;
 	
-		value = (frontreg << 8) | backreg);
+		value = (frontreg << 8) | backreg; //this gives the raw value
+		value = value / 360; //this gives volts
 	}
 	return value;
 }
