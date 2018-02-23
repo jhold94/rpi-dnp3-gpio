@@ -4,13 +4,20 @@
 
 using namespace opendnp3;
 
-GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint16_t> gpiopins)
+GPIOCommandHandler::GPIOCommandHandler(const std::vector<uint16_t> gpiopins, const std::vector<uint16_t> aniopins)
 {
     uint16_t index = 0;
 
     for(auto pin : gpiopins) {
        dnp2gpio[index] = pin;
        ++index;
+    }
+    
+    index = 0;
+    
+    for( auto pin : aniopins) {
+        dnp2anio[index] = pin;
+        ++index;
     }
 }
 
@@ -44,18 +51,18 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
 
 CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint16_t index)
 {
-    uint16_t gpio = 0;
+    uint16_t anio = 0;
     uint16_t value = 0;
     
-    return GetPinAndValue(index, gpio);
+    return GetPinAndValue(index, anio);
 }
 
  CommandStatus GPIOCommandHandler::Operate(const AnalogOutputInt16& command, uint16_t index, OperateType opType)
 {
-    uint16_t gpio = 0;
+    uint16_t anio = 0;
     uint16_t value = 0;
     
-    auto ret = GetPinAndValue(index, gpio);
+    auto ret = GetPinAndValue(index, anio);
     
     value = command.value
      
@@ -63,9 +70,9 @@ CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint1
     {
         if(gpio < 40000)
         {
-            analogWrite(gpio, value);
+            analogWrite(anio, value);
         } else {
-            dmWriteReg(gpio, value);
+            dmWriteReg(anio, value);
         }
     }
     
@@ -95,14 +102,14 @@ CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::Contr
     return CommandStatus::SUCCESS;
 }
 
-CommandStatus GPIOCommandHandler::GetPinAndValue(uint16_t index, uint16_t& gpio)
+CommandStatus GPIOCommandHandler::GetPinAndValue(uint16_t index, uint16_t& anio)
 {
     
-    auto iter = dnp2gpio.find(index);
-    if(iter == dnp2gpio.end()) {
+    auto iter = dnp2anio.find(index);
+    if(iter == dnp2anio.end()) {
         return CommandStatus::NOT_SUPPORTED;
     }
 
-    gpio = iter->second;
+    anio = iter->second;
     return CommandStatus::SUCCESS;
 }
