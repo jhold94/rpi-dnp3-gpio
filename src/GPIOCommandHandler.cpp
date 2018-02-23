@@ -47,7 +47,7 @@ CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint1
     uint16_t gpio = 0;
     uint16_t value = 0;
     
-    return GetPinAndValue(index, command.value, gpio, value);
+    return GetPinAndValue(index, gpio);
 }
 
  CommandStatus GPIOCommandHandler::Operate(const AnalogOutputInt16& command, uint16_t index, OperateType opType)
@@ -55,8 +55,10 @@ CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint1
     uint16_t gpio = 0;
     uint16_t value = 0;
     
-    auto ret = GetPinAndValue(index, command.value, gpio, value);
+    auto ret = GetPinAndValue(index, gpio);
     
+    value = command.value
+     
     if(ret == CommandStatus::SUCCESS)
     {
         if(gpio < 40000)
@@ -93,9 +95,8 @@ CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::Contr
     return CommandStatus::SUCCESS;
 }
 
-CommandStatus GPIOCommandHandler::GetPinAndValue(uint16_t index, opendnp3::AnalogOutputInt16& value, uint16_t& gpio, uint16_t& value)
-{  
-    value = command.value;
+CommandStatus GPIOCommandHandler::GetPinAndValue(uint16_t index, uint16_t& gpio)
+{
     
     auto iter = dnp2gpio.find(index);
     if(iter == dnp2gpio.end()) {
