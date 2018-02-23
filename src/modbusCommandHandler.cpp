@@ -115,6 +115,7 @@ void modbus_reconnect(void)
                 modbus_free(ctx);
                 ctx = modbus_new_tcp(IPADDR, PORT);
         }
+}
 
 void modbus_exit(void)
 {
