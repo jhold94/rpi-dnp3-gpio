@@ -71,11 +71,12 @@ int analogRead(int pin)
 	
 		value = meas_uA;
 		
-		return value;
+		//return value;
 	} else {
 		value = 100;
-		return value;
+		//return value;
 	}
+	return value;
 }
 
 void analogWrite(int pin, int value)
