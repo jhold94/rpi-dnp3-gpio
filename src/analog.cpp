@@ -91,7 +91,7 @@ void analogWrite(int pin, int value)
 	buf[0] = ((opt_dac >> 9) & 0xf);
 	buf[1] = ((opt_dac >> 1) & 0xff);
 	
-	switch(pin)
+	/*switch(pin)
 	{
 		case 0:
 			fpoke8(twifd, 0x2E, buf[0]);
@@ -111,7 +111,7 @@ void analogWrite(int pin, int value)
 			break;
 		default:
 			break;
-	}
+	}*/
 	
 	fpoke8(twifd, (0x2E + (2*pin)), buf[0]);
 	fpoke8(twifd, (0x2F + (2*pin)), buf[1]);
