@@ -75,7 +75,6 @@ int analogRead(int pin)
 		int twifd = fpga_init(NULL, 0);
 		int frontreg = fpeek8(twifd, (0x2E + (2*pin)));
 		int backreg = fpeek8(twifd, (0x2F + (2*pin)));
-		int value;
 	
 		value = (frontreg << 8) | backreg; //this gives the raw value
 		value = value / 360; //this gives volts
