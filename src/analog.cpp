@@ -55,7 +55,7 @@ void analog_init(void)
 int analogRead(int pin)
 {	
 	int value;
-	if (pin > 4)
+	if (pin < 4)
 	{
 		long long chan[4] = {0,0,0,0};
 	
