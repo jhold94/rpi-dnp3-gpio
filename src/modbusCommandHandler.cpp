@@ -13,6 +13,8 @@
 
 #define MAX_READ_BITS 10
 #define MAX_READ_REGISTERS 80
+#define IPADDR "192.168.1.100"
+#define PORT 2000
 
 uint8_t *tab_bit;
 uint8_t *tab_input_bit;
@@ -27,7 +29,7 @@ int nb_points_reg;
 
 void modbus_init(void)
 {
-        ctx = modbus_new_tcp("192.168.1.100", 2000);
+        ctx = modbus_new_tcp(IPADDR, PORT);
         
         modbus_set_slave(ctx, 5);
         
@@ -105,6 +107,14 @@ void dmWriteReg(int index, long value)
         
         modbus_write_register(ctx, index, value);
 }
+
+void modbus_reconnect(void)
+{
+        if(modbus_connect(ctx) == -1)
+        {
+                modbus_free(ctx);
+                ctx = modbus_new_tcp(IPADDR, PORT);
+        }
 
 void modbus_exit(void)
 {
