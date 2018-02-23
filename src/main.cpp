@@ -196,6 +196,8 @@ int main(int argc, char *argv[])
 		
 		// determines the sampling rate
 		std::this_thread::sleep_for(SAMPLE_PERIOD);
+		
+		modbus_reconnect();
 	}
 	
 	/* More modbus stuff */
