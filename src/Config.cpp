@@ -35,3 +35,17 @@ bool Config::Add(uint16_t gpiopin, assignvec0& vec0)
     return true;
 }
 
+bool Config::Add(uint16_t aniopin, assigncev1& vec1)
+{
+    //first check if the pin is assigned
+    if(assigned.find(aniopin) != assigned.end())
+    {
+        return false;
+    }
+    
+    vec1.pushback(aniopin);
+    assigned.insert(aniopin);
+    
+    return true;
+}
+
