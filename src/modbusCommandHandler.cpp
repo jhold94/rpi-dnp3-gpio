@@ -12,9 +12,9 @@
 #include "sources/modbusCommands.h"
 
 #define MAX_READ_BITS 10
-#define MAX_READ_REGISTERS 80
-//#define IPADDR "192.168.1.100"
-//#define PORT 2000
+#define MAX_READ_REGISTERS 10
+#define IPADDR "192.168.1.100"
+#define PORT 2000
 
 uint8_t *tab_bit;
 uint8_t *tab_input_bit;
@@ -29,7 +29,7 @@ int nb_points_reg;
 
 void modbus_init(void)
 {
-        ctx = modbus_new_tcp("192.168.1.100", 2000); //IPADDR, PORT);
+        ctx = modbus_new_tcp(IPADDR, PORT);
         
         modbus_set_slave(ctx, 5);
         
