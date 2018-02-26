@@ -54,7 +54,7 @@ CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint1
     uint16_t anio = 0;
     //uint16_t value = 0;
     
-    return GetPinAndValue(index, anio);
+    return GetPin(index, anio);
 }
 
  CommandStatus GPIOCommandHandler::Operate(const AnalogOutputInt16& command, uint16_t index, OperateType opType)
@@ -62,7 +62,97 @@ CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt16& command, uint1
     uint16_t anio = 0;
     uint16_t value = 0;
     
-    auto ret = GetPinAndValue(index, anio);
+    auto ret = GetPin(index, anio);
+    
+    value = command.value;
+     
+    if(ret == CommandStatus::SUCCESS)
+    {
+        if(anio < 40000)
+        {
+            analogWrite(anio, value);
+        } else {
+            dmWriteReg(anio, value);
+        }
+    }
+    
+    return ret;
+}
+
+CommandStatus GPIOCommandHandler::Select(const AnalogOutputInt32& command, uint16_t index)
+{
+    uint16_t anio = 0;
+    //uint16_t value = 0;
+    
+    return GetPin(index, anio);
+}
+
+ CommandStatus GPIOCommandHandler::Operate(const AnalogOutputInt32& command, uint16_t index, OperateType opType)
+{
+    uint16_t anio = 0;
+    uint32_t value = 0;
+    
+    auto ret = GetPin(index, anio);
+    
+    value = command.value;
+     
+    if(ret == CommandStatus::SUCCESS)
+    {
+        if(anio < 40000)
+        {
+            analogWrite(anio, value);
+        } else {
+            dmWriteReg(anio, value);
+        }
+    }
+    
+    return ret;
+}
+
+CommandStatus GPIOCommandHandler::Select(const AnalogOutputFloat32& command, uint16_t index)
+{
+    uint16_t anio = 0;
+    //uint16_t value = 0;
+    
+    return GetPin(index, anio);
+}
+
+ CommandStatus GPIOCommandHandler::Operate(const AnalogOutputFloat32& command, uint16_t index, OperateType opType)
+{
+    uint16_t anio = 0;
+    float value = 0;
+    
+    auto ret = GetPin(index, anio);
+    
+    value = command.value;
+     
+    if(ret == CommandStatus::SUCCESS)
+    {
+        if(anio < 40000)
+        {
+            analogWrite(anio, value);
+        } else {
+            dmWriteReg(anio, value);
+        }
+    }
+    
+    return ret;
+}
+
+CommandStatus GPIOCommandHandler::Select(const AnalogOutputDouble64& command, uint16_t index)
+{
+    uint16_t anio = 0;
+    //uint16_t value = 0;
+    
+    return GetPin(index, anio);
+}
+
+ CommandStatus GPIOCommandHandler::Operate(const AnalogOutputDouble64& command, uint16_t index, OperateType opType)
+{
+    uint16_t anio = 0;
+    double value = 0;
+    
+    auto ret = GetPin(index, anio);
     
     value = command.value;
      
@@ -102,7 +192,7 @@ CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::Contr
     return CommandStatus::SUCCESS;
 }
 
-CommandStatus GPIOCommandHandler::GetPinAndValue(uint16_t index, uint16_t& anio)
+CommandStatus GPIOCommandHandler::GetPin(uint16_t index, uint16_t& anio)
 {
     
     auto iter = dnp2anio.find(index);
