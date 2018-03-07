@@ -34,42 +34,16 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
         if (gpio < 1000) 
         {
             digitalWrite(gpio, state);
+            digitalWrite(58, 1);
         } else {
             dmWriteBit(gpio, state);
+            digitalWrite(58, 1);
         }
     }
-
+    digitalWrite(58, 0);
     return ret;
 }
 
-/*opendnp3::CommandStatus Select(const opendnp3::AnalogOutputInt16& command, uint16_t index)
-{
-    uint8_t analogpin = 0;
-    uint16_t value = 0;
-    
-    return GetPinAndValue(index, command.functoinCode, analogpin, value);
-}
-
- opendnp3::CommandStatus Operate(const opendnp3::AnalogOutputInt16& command, uint16_t index, opendnp3::OperateType opType)
-{
-    uint8_t analogpin = 0;
-    uint16_t value = 0;
-    
-    auto ret = GetPinAndValue(index, command.functionCode, analogpin, value);
-    
-    if(ret == CommandStatus::SUCCESS)
-    {
-        if(gpio < 10)
-        {
-            analogWrite(analogpin, value);
-        } else {
-            dmWriteRegs((analogpin  - 10), value);
-        }
-    }
-    
-    return ret;
-}
-*/
 CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::ControlCode code, uint16_t& gpio, bool& state)
 {
     switch(code)
