@@ -234,9 +234,16 @@ int specialDigitalRead(int pin)
 
 void pinMode(int pin, int mode)
 {
-	gpio_export(pin);
-	gpio_direction(pin, mode); // 1 = OUTPUT / 0 = INPUT
-	gpio_unexport(pin);
+	if (pin == 58)
+	{
+		gpio_export(pin);
+		gpio_active(pin, mode);
+		gpio_unexport(pin);
+	} else {
+		gpio_export(pin);
+		gpio_direction(pin, mode); // 1 = OUTPUT / 0 = INPUT
+		gpio_unexport(pin);
+	}
 }
 
 int digitalRead(int pin)
