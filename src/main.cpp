@@ -29,6 +29,8 @@ using namespace asiodnp3;
 
 int main(int argc, char *argv[])
 {
+	pinMode(56, 1);
+	
 	if(argc != 2)
 	{
 		std::cerr << "usage: ts-dnp3 <ini file path>" << std::endl;
@@ -122,6 +124,16 @@ int main(int argc, char *argv[])
         const auto SAMPLE_PERIOD = std::chrono::milliseconds(config.sample_period_ms);
 
 	while(true) {
+		
+		int count = 0;
+		
+		//Make the Status 2 light blink as long as program is running
+		if((count % 10) == 0)
+		{
+			digitalWrite(56, 1);
+		} else {
+			digitalWrite(56, 0);
+		}
 
 		DNPTime time(asiopal::UTCTimeSource::Instance().Now().msSinceEpoch);
 
@@ -175,6 +187,9 @@ int main(int argc, char *argv[])
 	
 	/* More modbus stuff */
 	modbus_exit();
+	
+	count++;
+	if (count == 1000) count = 0;
 }
 
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value)
