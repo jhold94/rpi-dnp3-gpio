@@ -27,6 +27,8 @@ using namespace opendnp3;
 using namespace asiopal;
 using namespace asiodnp3;
 
+int count = 0;
+
 int main(int argc, char *argv[])
 {
 	pinMode(56, 1);
@@ -124,8 +126,6 @@ int main(int argc, char *argv[])
         const auto SAMPLE_PERIOD = std::chrono::milliseconds(config.sample_period_ms);
 
 	while(true) {
-		
-		int count = 0;
 		
 		//Make the Status 2 light blink as long as program is running
 		if((count % 10) == 0)
