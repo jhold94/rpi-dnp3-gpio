@@ -27,17 +27,21 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
     uint16_t gpio = 0;
     bool state = false;
 
+    digitalWrite(58, 0);
+    
     auto ret = GetPinAndState(index, command.functionCode, gpio, state);
 
+    digitalWrite(58, 0);
+    
     if(ret == CommandStatus::SUCCESS)
     {
         if (gpio < 1000) 
         {
             digitalWrite(gpio, state);
-            digitalWrite(58, 0);
+            //digitalWrite(58, 0);
         } else {
             dmWriteBit(gpio, state);
-            digitalWrite(58, 0);
+            //digitalWrite(58, 0);
         }
     }
     
