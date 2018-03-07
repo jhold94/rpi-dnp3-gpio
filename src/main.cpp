@@ -27,6 +27,8 @@ using namespace opendnp3;
 using namespace asiopal;
 using namespace asiodnp3;
 
+int count = 0;
+
 int main(int argc, char *argv[])
 {
 	if(argc != 2)
@@ -135,6 +137,14 @@ int main(int argc, char *argv[])
 
 	while(true) {
 
+		//Make the Status 2 light blink as long as program is running
+		if((count % 10) == 0)
+		{
+			digitalWrite(56, 1);
+		} else {
+			digitalWrite(56, 0);
+		}
+		
 		DNPTime time(asiopal::UTCTimeSource::Instance().Now().msSinceEpoch);
 
 		UpdateBuilder builder;
@@ -197,7 +207,8 @@ int main(int argc, char *argv[])
 		// determines the sampling rate
 		std::this_thread::sleep_for(SAMPLE_PERIOD);
 		
-		//modbus_reconnect();
+		count++;
+		if (count == 1000) count = 0;
 	}
 	
 	/* More modbus stuff */
