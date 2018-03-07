@@ -183,13 +183,15 @@ int main(int argc, char *argv[])
 		
 		// determines the sampling rate
 		std::this_thread::sleep_for(SAMPLE_PERIOD);
+		
+		count++;
+		if (count == 1000) count = 0;
 	}
 	
 	/* More modbus stuff */
 	modbus_exit();
 	
-	count = ++count;
-	if (count == 1000) count = 0;
+
 }
 
 bool safe_handler(Config& config, const std::string& section, const std::string& name, const std::string& value)
