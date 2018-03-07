@@ -34,6 +34,8 @@ int main(int argc, char *argv[])
 	pinMode(56, 1);
 	pinMode(58, 1);
 	
+	digitalWrite(58, 0);
+	
 	if(argc != 2)
 	{
 		std::cerr << "usage: ts-dnp3 <ini file path>" << std::endl;
