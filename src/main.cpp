@@ -188,7 +188,7 @@ int main(int argc, char *argv[])
 	/* More modbus stuff */
 	modbus_exit();
 	
-	count++;
+	count = ++count;
 	if (count == 1000) count = 0;
 }
 
