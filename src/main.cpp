@@ -32,6 +32,7 @@ int count = 0;
 int main(int argc, char *argv[])
 {
 	pinMode(56, 1);
+	pinMode(5, 0);
 	
 	if(argc != 2)
 	{
@@ -145,12 +146,16 @@ int main(int argc, char *argv[])
 			if (pin < 10000)
 			{
 				value = digitalRead(pin);
+				digitalWrite(5, 1);
 			} else {
 				value = dmReadBit(pin);
+				digitalWrite(5, 1);
 			}
 			builder.Update(Binary(value, 0x01, time), index);
 			++index;
 		}
+		
+		digitalWrite(5, 0);
 		
 		index = 0;
 		for(int pin : config.aninputs) {
@@ -158,12 +163,16 @@ int main(int argc, char *argv[])
 			if (pin < 30000) 
 			{
 				anValue = analogRead(pin);
+				digitalWrite(5, 1);
 			} else {
 				anValue = dmReadReg(pin);
+				digitalWrite(5, 1);
 			}
 			builder.Update(Analog(anValue, 0x01, time), index);
 			++index;
 		}
+		
+		digitalWrite(5, 0);
 
 		index = 0;
 		for(int pin : config.outputs) {
@@ -171,12 +180,16 @@ int main(int argc, char *argv[])
 			if (pin < 1000)
 			{
 				outValue = digitalRead(pin);
+				digitalWrite(5, 1);
 			} else {
 				outValue = dmReadOutBit(pin);
+				digitalWrite(5, 1);
 			}
 			builder.Update(BinaryOutputStatus(outValue, 0x01, time), index);
 			++index;
 		}
+		
+		digitalWrite(5, 0);
 
 		outstation->Apply(builder.Build());
 
