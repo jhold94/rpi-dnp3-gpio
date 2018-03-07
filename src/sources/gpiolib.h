@@ -4,6 +4,7 @@ extern "C" {
 #endif
 
   extern    int gpio_direction(int gpio, int dir);
+  extern    int gpio_active(int gpio, int dir);
   extern    int gpio_export(int gpio);
   extern    void gpio_unexport(int gpio);
   extern    int gpio_read(int gpio);
