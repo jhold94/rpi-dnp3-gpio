@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
 		} else {
 			digitalWrite(56, 0);
 		}
-
+		
 		DNPTime time(asiopal::UTCTimeSource::Instance().Now().msSinceEpoch);
 
 		UpdateBuilder builder;
