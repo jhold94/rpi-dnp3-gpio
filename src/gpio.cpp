@@ -41,7 +41,35 @@ int gpio_direction(int gpio, int dir)
 	}
 	else if(gpiofd) {
 		if(2 != write(gpiofd, "in", 2)) {
-			perror("Couldn't set GPIO directio to in");
+			perror("Couldn't set GPIO direction to in");
+			ret = -3;
+		}
+	}
+
+	close(gpiofd);
+	return ret;
+}
+
+int gpio_active(int gpio, int dir)
+{
+	int ret = 0;
+	char buf[50];
+	sprintf(buf, "/sys/class/gpio/gpio%d/active_low", gpio);
+	int gpiofd = open(buf, O_WRONLY);
+	if(gpiofd < 0) {
+		perror("Couldn't open IRQ file");
+		ret = -1;
+	}
+
+	if(dir == 1 && gpiofd){
+		if (3 != write(gpiofd, "1", 3)) {
+			perror("Couldn't set GPIO active_low to 1");
+			ret = -2;
+		}
+	}
+	else if(gpiofd) {
+		if(2 != write(gpiofd, "0", 2)) {
+			perror("Couldn't set GPIO active_low to 0");
 			ret = -3;
 		}
 	}
