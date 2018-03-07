@@ -26,12 +26,8 @@ CommandStatus GPIOCommandHandler::Operate(const ControlRelayOutputBlock& command
 {
     uint16_t gpio = 0;
     bool state = false;
-
-    digitalWrite(58, 0);
-    
+   
     auto ret = GetPinAndState(index, command.functionCode, gpio, state);
-
-    digitalWrite(58, 0);
     
     if(ret == CommandStatus::SUCCESS)
     {
@@ -54,11 +50,9 @@ CommandStatus GPIOCommandHandler::GetPinAndState(uint16_t index, opendnp3::Contr
     {
         case(ControlCode::LATCH_ON):
             state = true;
-            digitalWrite(58, 1);
             break;
         case(ControlCode::LATCH_OFF):
             state = false;
-            digitalWrite(58, 1);
             break;
         default:
             return CommandStatus::NOT_SUPPORTED;
