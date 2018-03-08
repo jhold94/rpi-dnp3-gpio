@@ -85,6 +85,13 @@ long dmReadReg(int index)
         return tab_reg[index];        
 }
 
+void modbus_reconnect(void)
+{
+        modbus_set_error_recovery(ctx,
+                MODBUS_ERROR_RECOVERY_LINK |
+                MODBUS_ERROR_RECOVERY_PROTOCOL);
+}
+
 void modbus_exit(void)
 {
         modbus_close(ctx);
