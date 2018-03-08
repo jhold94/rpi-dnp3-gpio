@@ -87,9 +87,7 @@ long dmReadReg(int index)
 
 void modbus_reconnect(void)
 {
-        modbus_set_error_recovery(ctx,
-                MODBUS_ERROR_RECOVERY_LINK |
-                MODBUS_ERROR_RECOVERY_PROTOCOL);
+        modbus_set_error_recovery(ctx, MODBUS_ERROR_RECOVERY_LINK);
 }
 
 void modbus_exit(void)
