@@ -107,14 +107,9 @@ void dmWriteReg(int index, long value)
         
         modbus_write_register(ctx, index, value);
 }
-
 void modbus_reconnect(void)
 {
-        if(modbus_connect(ctx) == -1)
-        {
-                modbus_free(ctx);
-                //ctx = modbus_new_tcp(IPADDR, PORT);
-        }
+        modbus_set_error_recovery(ctx, MODBUS_ERROR_RECOVERY_LINK);
 }
 
 void modbus_exit(void)
