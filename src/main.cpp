@@ -209,6 +209,9 @@ int main(int argc, char *argv[])
 		
 		count++;
 		if (count == 1000) count = 0;
+		
+		modbus_reconnect();
+
 	}
 	
 	/* More modbus stuff */
